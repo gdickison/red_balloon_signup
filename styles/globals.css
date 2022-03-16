@@ -34,6 +34,21 @@ a {
   left: -4.5rem;
 }
 
+@media screen and (min-width: 400px) {
+  #peeking-eagle {
+    height: 6rem;
+    transition:left 0.5s ease, opacity 0.5s ease;
+    opacity: 0;
+    left: -10rem;
+  }
+  
+  #email-input:focus~#peeking-eagle {
+    transition:left 0.5s ease, opacity 0.5s ease;
+    opacity: 1;
+    left: -5.5rem;
+  }
+}
+
 @media screen and (min-width: 420px) {
   #peeking-eagle {
     height: 8rem;
@@ -51,7 +66,7 @@ a {
 
 @media screen and (min-width: 768px) {
   #peeking-eagle {
-    height: 12rem;
+    height: 14rem;
     transition:left 0.5s ease, opacity 0.5s ease;
     opacity: 0;
     left: -25rem;
@@ -60,22 +75,52 @@ a {
   #email-input:focus~#peeking-eagle {
     transition:left 0.5s ease, opacity 0.5s ease;
     opacity: 1;
-    left: -19rem;
+    left: -21rem;
   }
 }
 
 @media screen and (min-width: 820px) {
   #peeking-eagle {
-    height: 12rem;
+    height: 16rem;
     transition:left 0.5s ease, opacity 0.5s ease;
     opacity: 0;
-    left: -30rem;
+    left: -40rem;
   }
 
   #email-input:focus~#peeking-eagle {
     transition:left 0.5s ease, opacity 0.5s ease;
     opacity: 1;
-    left: -21rem;
+    left: -22rem;
+  }
+}
+
+@media screen and (min-width: 1024px) {
+  #peeking-eagle {
+    height: 18rem;
+    transition:left 0.5s ease, opacity 0.5s ease;
+    opacity: 0;
+    left: -60rem;
+  }
+
+  #email-input:focus~#peeking-eagle {
+    transition:left 0.5s ease, opacity 0.5s ease;
+    opacity: 1;
+    left: -29rem;
+  }
+}
+
+@media screen and (min-width: 1180px) {
+  #peeking-eagle {
+    height: 18rem;
+    transition:left 0.5s ease, opacity 0.5s ease;
+    opacity: 0;
+    left: -60rem;
+  }
+
+  #email-input:focus~#peeking-eagle {
+    transition:left 0.5s ease, opacity 0.5s ease;
+    opacity: 1;
+    left: -35rem;
   }
 }
 
