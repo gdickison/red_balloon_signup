@@ -13,6 +13,9 @@ module.exports = {
         'rbWhite': '#f7f7f7',
         'rbYellow': '#ffe15e',
       },
+      screens: {
+        'xs': '420px',
+      },
     },
     fontFamily: {
       sans: ["Fira Sans", 'sans-serif'],

@@ -21,6 +21,64 @@ a {
   box-sizing: border-box;
 }
 
+#peeking-eagle {
+  height: 6rem;
+  transition:left 0.5s ease, opacity 0.5s ease;
+  opacity: 0;
+  left: -10rem;
+}
+
+#email-input:focus~#peeking-eagle {
+  transition:left 0.5s ease, opacity 0.5s ease;
+  opacity: 1;
+  left: -4.5rem;
+}
+
+@media screen and (min-width: 420px) {
+  #peeking-eagle {
+    height: 8rem;
+    transition:left 0.5s ease, opacity 0.5s ease;
+    opacity: 0;
+    left: -10rem;
+  }
+
+  #email-input:focus~#peeking-eagle {
+    transition:left 0.5s ease, opacity 0.5s ease;
+    opacity: 1;
+    left: -7rem;
+  }
+}
+
+@media screen and (min-width: 768px) {
+  #peeking-eagle {
+    height: 12rem;
+    transition:left 0.5s ease, opacity 0.5s ease;
+    opacity: 0;
+    left: -25rem;
+  }
+
+  #email-input:focus~#peeking-eagle {
+    transition:left 0.5s ease, opacity 0.5s ease;
+    opacity: 1;
+    left: -19rem;
+  }
+}
+
+@media screen and (min-width: 820px) {
+  #peeking-eagle {
+    height: 12rem;
+    transition:left 0.5s ease, opacity 0.5s ease;
+    opacity: 0;
+    left: -30rem;
+  }
+
+  #email-input:focus~#peeking-eagle {
+    transition:left 0.5s ease, opacity 0.5s ease;
+    opacity: 1;
+    left: -21rem;
+  }
+}
+
 .hero-quote-wrapper {
   filter: drop-shadow(-1px 6px 3px rgba(50, 50, 0, 0.5));
 }

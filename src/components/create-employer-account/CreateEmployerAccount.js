@@ -44,8 +44,8 @@ const CreateEmployerAccount = () => {
           // eslint-disable-next-line react/jsx-key
           stepText={["STEP 1/5 - Already have an account? ", <a className="underline" href="#">Log in</a>]}
         />
-        <form className="flex flex-col items-center space-y-3 my-12" onSubmit={handleSubmit} method="post">
-          <input className="h-11 text-lg px-6 w-80 rounded-full" type="email" name="email" placeholder="Your Email" onChange={handleChange} required/>
+        <form className="flex flex-col items-center space-y-3 my-12 relative" onSubmit={handleSubmit} method="post">
+          <input id="email-input" className="h-11 text-lg px-6 w-80 rounded-full" type="email" name="email" placeholder="Your Email" onChange={handleChange} required/>
           <input className="h-11 text-lg px-6 w-80 rounded-full" type="password" name="password" placeholder="Your Password" onChange={handleChange} required/>
           <button className="flex justify-between items-center text-rbWhite bg-rbBlue border-1 border-rbWhite h-11 w-80 border-2 rounded-full" type="submit">
             <span className="uppercase font-bold tracking-wider text-lg px-6">Sign Up</span>
@@ -53,6 +53,7 @@ const CreateEmployerAccount = () => {
               <Image className="bg-rbWhite rounded-full" width={28} height={28} src="/images/arrow-circle-right.svg" alt="Sign Up" />
             </span>
           </button>
+          <img id="peeking-eagle" className="absolute -top-12" src="/images/peeking-eagle.png" alt="Peeking Eagle" />
         </form>
       </div>
       <div className="flex justify-center relative pt-4 pb-8">
