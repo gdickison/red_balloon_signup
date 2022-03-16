@@ -2,6 +2,8 @@
 import { useState } from "react"
 import { useRouter } from "next/router"
 import Image from "next/image"
+import EmployerOnboardHeader from "../EmployerOnboardHeader"
+
 
 const CreateEmployerAccount = () => {
   const router = useRouter()
@@ -37,13 +39,11 @@ const CreateEmployerAccount = () => {
   return (
     <section className="min-h-screen" style={{backgroundImage: "url(/images/bg-red-paper.jpg)", backgroundSize: 'cover'}}>
       <div className="flex flex-col justify-center items-center">
-        <div className="w-80 h-36 my-2 flex justify-center items-center">
-          <img className="w-56" src="/images/red-balloon-logo-white.png" alt="Red Balloon Free To Work"/>
-        </div>
-        <div className="text-rbWhite w-80 h-20 -my-6 flex flex-col justify-around items-center">
-          <h1 className="text-4xl font-medium tracking-tight">Create Your Account</h1>
-          <p className="text-sm tracking-wide">STEP 1/5 - Already have an account? <a className="underline" href="#">Log in</a></p>
-        </div>
+        <EmployerOnboardHeader
+          headerText="Create Your Account"
+          // eslint-disable-next-line react/jsx-key
+          stepText={["STEP 1/5 - Already have an account? ", <a className="underline" href="#">Log in</a>]}
+        />
         <form className="flex flex-col items-center space-y-3 my-12" onSubmit={handleSubmit} method="post">
           <input className="h-11 text-lg px-6 w-80 rounded-full" type="email" name="email" placeholder="Your Email" onChange={handleChange} required/>
           <input className="h-11 text-lg px-6 w-80 rounded-full" type="password" name="password" placeholder="Your Password" onChange={handleChange} required/>
