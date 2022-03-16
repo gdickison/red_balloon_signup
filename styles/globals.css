@@ -20,3 +20,15 @@ a {
 * {
   box-sizing: border-box;
 }
+
+.hero-quote-wrapper {
+  filter: drop-shadow(-1px 6px 3px rgba(50, 50, 0, 0.5));
+}
+
+.hero-quote {
+  clip-path: polygon(0 10%, 100% 0%, 95% 100%, 3% 100%);
+}
+
+.hero-who {
+  clip-path: polygon(12% 0%, 92% 0%, 95% 100%, 6% 100%);
+}
