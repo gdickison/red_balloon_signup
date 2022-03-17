@@ -41,8 +41,7 @@ const CreateEmployerAccount = () => {
       <div className="flex flex-col justify-center items-center">
         <EmployerOnboardHeader
           headerText="Create Your Account"
-          // eslint-disable-next-line react/jsx-key
-          stepText={["STEP 1/5 - Already have an account? ", <a className="underline" href="#">Log in</a>]}
+          stepText={["STEP 1/5 - Already have an account? ", <a key={Math.random()} className="underline" href="#">Log in</a>]}
         />
         <form className="flex flex-col items-center space-y-3 my-12 relative" onSubmit={handleSubmit} method="post">
           <input id="email-input" className="h-11 text-lg px-6 w-80 rounded-full" type="email" name="email" placeholder="Your Email" onChange={handleChange} required/>
