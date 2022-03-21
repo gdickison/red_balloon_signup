@@ -1,14 +1,11 @@
 /* eslint-disable @next/next/no-img-element */
 import { useState } from "react"
-import { useRouter } from "next/router"
 import ButtonWithArrow from "../../assets/ButtonWithArrow"
 import EmployerOnboardHeader from "../EmployerOnboardHeader/index"
 import SectionWrapper from "../SectionWrapper/index"
 
 
-const CreateEmployerAccount = () => {
-  const router = useRouter()
-
+const CreateEmployerAccount = ({show}) => {
   const [newUser, setNewUser] = useState({email: null, password: null})
 
   const handleChange = e => {
@@ -17,7 +14,7 @@ const CreateEmployerAccount = () => {
     console.log(newUser)
   }
 
-  const handleSubmit = async e => {
+  const handleCreateAccount = async e => {
     e.preventDefault()
     const JSONdata = JSON.stringify(newUser)
     const endpoint = '/api/create-account'
@@ -38,20 +35,21 @@ const CreateEmployerAccount = () => {
   }
 
   return (
-    <SectionWrapper show={false}>
+    <SectionWrapper show={show}>
       <div className="flex flex-col justify-center items-center">
         <EmployerOnboardHeader
           headerText="Create Your Account"
           stepText={["STEP 1/5 - Already have an account? ", <a key={Math.random()} className="underline" href="#">Log in</a>]}
         />
-        <form className="flex flex-col items-center space-y-3 my-12 relative" onSubmit={handleSubmit} method="post">
-          <input id="email-input" className="h-11 text-lg px-6 w-80 rounded-full" type="email" name="email" placeholder="Your Email" onChange={handleChange} required/>
-          <input className="h-11 text-lg px-6 w-80 rounded-full" type="password" name="password" placeholder="Your Password" onChange={handleChange} required/>
+        <div className="flex flex-col items-center space-y-3 my-12 relative">
+          <input id="email-input" className="h-11 text-lg px-6 w-80 rounded-full" type="email" name="email" placeholder="Your Email" onChange={handleChange}/>
+          <input className="h-11 text-lg px-6 w-80 rounded-full" type="password" name="password" placeholder="Your Password" onChange={handleChange}/>
           <ButtonWithArrow
             buttonText="Sign Up"
+            eventHandler={handleCreateAccount}
           />
           <img id="peeking-eagle" className="absolute -top-12" src="/images/peeking-eagle.png" alt="Peeking Eagle" />
-        </form>
+        </div>
       </div>
       <div className="flex justify-center relative pt-4 pb-8">
         <img className="w-80" src="/images/banner-combo.svg" alt="Red Balloon American Hero" />

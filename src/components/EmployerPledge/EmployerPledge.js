@@ -5,7 +5,7 @@ import ButtonNoArrow from "../../assets/ButtonNoArrow"
 import Copyright from "../../assets/Copyright"
 import { useState } from 'react'
 
-const EmployerPledge = () => {
+const EmployerPledge = ({show}) => {
   const [checked, setChecked] = useState(false)
 
   const handleChange = () => {
@@ -15,7 +15,7 @@ const EmployerPledge = () => {
   const handlePledge = async e => {
     e.preventDefault()
     console.log('click')
-    const JSONdata = pledge.textContent
+    const JSONdata = JSON.stringify(pledge.textContent)
     const endpoint = '/api/employer-pledge'
 
     const options = {
@@ -33,7 +33,7 @@ console.log(options)
   }
 
   return (
-    <SectionWrapper show={true}>
+    <SectionWrapper show={show}>
       <div className="flex flex-col justify-center items-center w-80">
         <EmployerOnboardHeader
           headerText="Employer Pledge"

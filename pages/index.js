@@ -7,7 +7,9 @@ export default function Home() {
   return (
     <div>
     {/* Create Account */}
-      <CreateEmployerAccount/>
+      <CreateEmployerAccount
+        show={true}
+      />
       {/* Flying eagle transition */}
       <section className='hidden h-screen'>
         <div>
@@ -15,7 +17,9 @@ export default function Home() {
         </div>
       </section>
       {/* Take the pledge */}
-      <EmployerPledge/>
+      <EmployerPledge
+        show={true}
+      />
       {/* Add data & finish */}
       <NewEmployerAccountInfo/>
     </div>
