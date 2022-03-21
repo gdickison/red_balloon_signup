@@ -5,33 +5,7 @@ import ButtonNoArrow from "../../assets/ButtonNoArrow"
 import Copyright from "../../assets/Copyright"
 import { useState } from 'react'
 
-const EmployerPledge = ({show}) => {
-  const [checked, setChecked] = useState(false)
-
-  const handleChange = () => {
-    setChecked(!checked)
-  }
-
-  const handlePledge = async e => {
-    e.preventDefault()
-    console.log('click')
-    const JSONdata = JSON.stringify(pledge.textContent)
-    const endpoint = '/api/employer-pledge'
-
-    const options = {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSONdata,
-    }
-console.log(options)
-    const response = await fetch(endpoint, options)
-    const result = await response.json()
-
-    console.log(result)
-  }
-
+const EmployerPledge = ({show, checked, changeHandler, eventHandler}) => {
   return (
     <SectionWrapper show={show}>
       <div className="flex flex-col justify-center items-center w-80">
@@ -56,10 +30,10 @@ console.log(options)
           </div>
         </div>
         <div className="flex items-center my-4 space-x-2 w-60">
-          <input className="h-8 w-24 text-base rounded-full" type="checkbox" checked={checked} onChange={handleChange} required />
+          <input className="h-8 w-24 text-base rounded-full" type="checkbox" checked={checked} onChange={changeHandler} required />
           <p className="text-rbWhite text-base leading-5">I have read and agree to the Terms of Service and the Employer Pledge</p>
         </div>
-        <ButtonNoArrow buttonText="CONTINUE" eventHandler={handlePledge}/>
+        <ButtonNoArrow buttonText="CONTINUE" eventHandler={eventHandler}/>
         <img className="h-28 my-4" src="/images/red-balloon-seal-of-approval.svg" alt="Red Balloon Seal Of Approval" />
       </div>
       <Copyright/>

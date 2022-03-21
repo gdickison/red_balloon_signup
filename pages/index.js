@@ -1,27 +1,12 @@
-import CreateEmployerAccount from '../src/components/CreateEmployerAccount'
-import EmployerPledge from '../src/components/EmployerPledge'
-import NewEmployerAccountInfo from '../src/components/NewEmployerAccountInfo'
-
+import Link from "next/link"
 
 export default function Home() {
   return (
-    <div>
-    {/* Create Account */}
-      <CreateEmployerAccount
-        show={true}
-      />
-      {/* Flying eagle transition */}
-      <section className='hidden h-screen'>
-        <div>
-          <h1>Flying eagle transition</h1>
-        </div>
-      </section>
-      {/* Take the pledge */}
-      <EmployerPledge
-        show={true}
-      />
-      {/* Add data & finish */}
-      <NewEmployerAccountInfo/>
+    <div className="min-h-screen flex flex-col space-y-10 justify-center items-center">
+      <Link href="/create-employer-account">
+        <a>Create Employer Account</a>
+      </Link>
+      <p>Create Job Seeker Account</p>
     </div>
   )
 }
