@@ -1,8 +1,9 @@
 /* eslint-disable @next/next/no-img-element */
 import { useState } from "react"
 import { useRouter } from "next/router"
-import Image from "next/image"
-import EmployerOnboardHeader from "../EmployerOnboardHeader"
+import ButtonWithArrow from "../../assets/ButtonWithArrow"
+import EmployerOnboardHeader from "../EmployerOnboardHeader/index"
+import SectionWrapper from "../SectionWrapper/index"
 
 
 const CreateEmployerAccount = () => {
@@ -37,7 +38,7 @@ const CreateEmployerAccount = () => {
   }
 
   return (
-    <section className="min-h-screen" style={{backgroundImage: "url(/images/bg-red-paper.jpg)", backgroundSize: 'cover'}}>
+    <SectionWrapper show={false}>
       <div className="flex flex-col justify-center items-center">
         <EmployerOnboardHeader
           headerText="Create Your Account"
@@ -46,12 +47,9 @@ const CreateEmployerAccount = () => {
         <form className="flex flex-col items-center space-y-3 my-12 relative" onSubmit={handleSubmit} method="post">
           <input id="email-input" className="h-11 text-lg px-6 w-80 rounded-full" type="email" name="email" placeholder="Your Email" onChange={handleChange} required/>
           <input className="h-11 text-lg px-6 w-80 rounded-full" type="password" name="password" placeholder="Your Password" onChange={handleChange} required/>
-          <button className="flex justify-between items-center text-rbWhite bg-rbBlue border-1 border-rbWhite h-11 w-80 border-2 rounded-full" type="submit">
-            <span className="uppercase font-bold tracking-wider text-lg px-6">Sign Up</span>
-            <span className="flex items-center p-1.5">
-              <Image className="bg-rbWhite rounded-full" width={28} height={28} src="/images/arrow-circle-right.svg" alt="Sign Up" />
-            </span>
-          </button>
+          <ButtonWithArrow
+            buttonText="Sign Up"
+          />
           <img id="peeking-eagle" className="absolute -top-12" src="/images/peeking-eagle.png" alt="Peeking Eagle" />
         </form>
       </div>
@@ -72,7 +70,7 @@ const CreateEmployerAccount = () => {
           </div>
         </div>
       </div>
-    </section>
+    </SectionWrapper>
   )
 }
 

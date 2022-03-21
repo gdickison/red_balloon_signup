@@ -1,6 +1,7 @@
-import CreateEmployerAccount from '../src/components/create-employer-account'
-import EmployerPledge from '../src/components/employer-pledge'
-import NewEmployerAccountInfo from '../src/components/new-employer-account-info'
+import CreateEmployerAccount from '../src/components/CreateEmployerAccount'
+import EmployerPledge from '../src/components/EmployerPledge'
+import NewEmployerAccountInfo from '../src/components/NewEmployerAccountInfo'
+
 
 export default function Home() {
   return (

@@ -10,6 +10,7 @@ body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
     Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+  overscroll-behavior: none;
 }
 
 a {
@@ -20,6 +21,21 @@ a {
 * {
   box-sizing: border-box;
 }
+
+@keyframes pageFadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+body {
+  animation: pageFadeIn 0.25s ease;
+}
+
+/* #### Peeking Eagle #### */
 
 #peeking-eagle {
   height: 6rem;
@@ -124,6 +140,10 @@ a {
   }
 }
 
+/* #### End Peeking Eagle #### */
+
+/* #### Create irregular polygons, give one a drop-shadow #### */
+
 .hero-quote-wrapper {
   filter: drop-shadow(-1px 6px 3px rgba(50, 50, 0, 0.5));
 }
@@ -134,4 +154,17 @@ a {
 
 .hero-who {
   clip-path: polygon(12% 0%, 92% 0%, 95% 100%, 6% 100%);
+}
+
+@keyframes pledgeFadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+#pledge {
+  animation: pledgeFadeIn ease 1s;
 }
