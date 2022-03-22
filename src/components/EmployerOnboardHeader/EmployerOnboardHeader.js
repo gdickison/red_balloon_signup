@@ -7,7 +7,7 @@ const EmployerOnboardHeader = ({headerText, stepText}) => {
       </div>
       <div className="text-rbWhite w-80 h-20 -my-5 flex flex-col justify-around items-center">
         <h1 className="text-4xl font-medium tracking-tight">{headerText}</h1>
-        <p className="text-sm tracking-wide">{stepText}</p>
+        <p className="text-sm tracking-wide text-center">{stepText}</p>
       </div>
     </>
   )

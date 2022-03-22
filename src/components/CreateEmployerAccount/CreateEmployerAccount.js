@@ -39,6 +39,7 @@ const CreateEmployerAccount = ({show, changeHandler, eventHandler}) => {
           </div>
         </div>
       </div>
+      <img id="flying-eagle" className={`absolute top-1/3 left-[-110%] ${!show} ? "animated" : "" `} src="/images/flying-eagle.png" alt="Flying Eagle" />
     </SectionWrapper>
   )
 }

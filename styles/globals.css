@@ -168,3 +168,18 @@ body {
 #pledge {
   animation: pledgeFadeIn ease 1s;
 }
+
+/* #### Flying Eagle #### */
+
+@keyframes flyingEagle {
+  0% {
+    left: -110%;
+  }
+  100% {
+    left: 110%;
+  }
+}
+
+#flying-eagle.animated {
+  animation: flyingEagle ease 2s;
+}
