@@ -1,0 +1,11 @@
+Deploy to Prod:
+  stage: deploy
+  tags:
+  - hq
+  - shell
+  environment:
+      name: production
+  script:
+    - /home/gitlab-runner/.fly/bin/flyctl deploy
+  only:
+  - main
