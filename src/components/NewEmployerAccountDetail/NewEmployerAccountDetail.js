@@ -23,7 +23,7 @@ const NewEmployerAccountDetail = () => {
         </div>
          <div className="flex flex-col items-center space-y-3 my-12 relative">
           <input id="first-name" className="h-11 text-lg px-6 w-80 rounded-full" type="text" name="first-name" placeholder="First Name" onChange={changeHandler}/>
-          <input id="last-name" className="h-11 text-lg px-6 w-80 rounded-full" type="password" name="last-name" placeholder="Last Name" onChange={changeHandler}/>
+          <input id="last-name" className="h-11 text-lg px-6 w-80 rounded-full" type="text" name="last-name" placeholder="Last Name" onChange={changeHandler}/>
           <input id="business-name" className="h-11 text-lg px-6 w-80 rounded-full" type="text" name="business-name" placeholder="Business Name" onChange={changeHandler}/>
           <input id="website" className="h-11 text-lg px-6 w-80 rounded-full" type="url" name="website" placeholder="Website" onChange={changeHandler}/>
           <input id="address-1" className="h-11 text-lg px-6 w-80 rounded-full" type="text" name="address-1" placeholder="Address 1" onChange={changeHandler}/>
