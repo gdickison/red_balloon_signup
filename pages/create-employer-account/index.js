@@ -1,11 +1,15 @@
 import CreateEmployerAccount from '../../src/components/CreateEmployerAccount'
+import FlyingEagle from '../../src/assets/FlyingEagle'
 import EmployerPledge from '../../src/components/EmployerPledge'
 import { useState } from 'react'
+import { useRouter } from 'next/router'
 
 export default function Home() {
   const [newUser, setNewUser] = useState({email: null, password: null})
   const [showCreateEmployerAccount, setShowCreateEmployerAccount] = useState(true)
+  const [showFlyingEagle, setShowFlyingEagle] = useState(false)
   const [showEmployerPledge, setShowEmployerPledge] = useState(false)
+  const router = useRouter()
 
   const handleChange = e => {
     e.preventDefault()
@@ -31,8 +35,16 @@ export default function Home() {
     const result = await response.json()
 
     console.log(result)
-    setShowCreateEmployerAccount(false)
-    setShowEmployerPledge(true)
+    document.getElementById("create-employer-account").classList.add("fade-out")
+
+    setShowFlyingEagle(true)
+    setTimeout(() => {
+      setShowCreateEmployerAccount(false)
+    }, 1900)
+    setTimeout(() => {
+      setShowEmployerPledge(true)
+      console.log('time!')
+    },1800)
   }
 
   const [checked, setChecked] = useState(false)
@@ -59,6 +71,7 @@ console.log(options)
     const result = await response.json()
 
     console.log(result)
+    router.push('/new-employer-account-detail')
   }
 
   return (
@@ -69,11 +82,9 @@ console.log(options)
         changeHandler={handleChange}
       />
       {/* Flying eagle transition */}
-      <section className='hidden h-screen'>
-        <div>
-          <h1>Flying eagle transition</h1>
-        </div>
-      </section>
+      <FlyingEagle
+        show={showFlyingEagle}
+      />
       {/* Take the pledge */}
       <EmployerPledge
         show={showEmployerPledge}

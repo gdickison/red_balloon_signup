@@ -93,6 +93,24 @@ body {
   clip-path: polygon(12% 0%, 92% 0%, 95% 100%, 6% 100%);
 }
 
+/* #### Fade out the create account veiw ### */
+
+@keyframes createFadeOut {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+.fade-out {
+  animation: createFadeOut ease 2s;
+  animation-fill-mode: forwards;
+}
+
+/* #### Fade in the pledge #### */
+
 @keyframes pledgeFadeIn {
   0% {
     opacity: 0;
