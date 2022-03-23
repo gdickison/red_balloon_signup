@@ -19,7 +19,7 @@ const CreateEmployerAccount = ({show, changeHandler, eventHandler}) => {
             buttonText="Sign Up"
             eventHandler={eventHandler}
           />
-          <img id="peeking-eagle" className="absolute -top-12" src="/images/peeking-eagle.png" alt="Peeking Eagle" />
+          <img id="peeking-eagle" className="fixed top-[22%]" src="/images/peeking-eagle.png" alt="Peeking Eagle" />
         </div>
       </div>
       <div className="flex justify-center relative pt-4 pb-8">
