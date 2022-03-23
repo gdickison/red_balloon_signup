@@ -54,73 +54,28 @@ body {
   #peeking-eagle {
     height: 8rem;
   }
-
-  /* #email-input:focus~#peeking-eagle {
-    transition:left 0.5s ease, opacity 0.5s ease;
-    opacity: 1;
-    left: 0;
-  } */
 }
 
 @media screen and (min-width: 768px) {
   #peeking-eagle {
     height: 14rem;
-    /* transition:left 0.5s ease, opacity 0.5s ease;
-    opacity: 0; */
     left: -25rem;
   }
-
-  /* #email-input:focus~#peeking-eagle {
-    transition:left 0.5s ease, opacity 0.5s ease;
-    opacity: 1;
-    left: 0;
-  } */
 }
 
 @media screen and (min-width: 820px) {
   #peeking-eagle {
     height: 16rem;
-    /* transition:left 0.5s ease, opacity 0.5s ease;
-    opacity: 0; */
     left: -40rem;
   }
-
-  /* #email-input:focus~#peeking-eagle {
-    transition:left 0.5s ease, opacity 0.5s ease;
-    opacity: 1;
-    left: 0;
-  } */
 }
 
 @media screen and (min-width: 1024px) {
   #peeking-eagle {
     height: 18rem;
-    /* transition:left 0.5s ease, opacity 0.5s ease;
-    opacity: 0; */
     left: -60rem;
   }
-
-  /* #email-input:focus~#peeking-eagle {
-    transition:left 0.5s ease, opacity 0.5s ease;
-    opacity: 1;
-    left: 0;
-  } */
 }
-
-/* @media screen and (min-width: 1180px) {
-  #peeking-eagle {
-    height: 18rem;
-    transition:left 0.5s ease, opacity 0.5s ease;
-    opacity: 0;
-    left: -60rem;
-  }
-
-  #email-input:focus~#peeking-eagle {
-    transition:left 0.5s ease, opacity 0.5s ease;
-    opacity: 1;
-    left: 0;
-  }
-} */
 
 /* #### End Peeking Eagle #### */
 
