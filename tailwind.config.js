@@ -15,7 +15,8 @@ module.exports = {
         'rbYellow': '#ffe15e',
       },
       screens: {
-        'xs': '420px',
+        '2xs': '420px',
+        'xs': '475px'
       },
     },
     fontFamily: {

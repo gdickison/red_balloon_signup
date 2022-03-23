@@ -39,7 +39,12 @@ const NewEmployerAccountDetail = () => {
           headerText="Keep Going!"
           stepText="STEP 3/5 - We need just a bit more information to set up your account"
         />
-          <img src="/images/great-seal-outlined.png" alt="Great Seal" className="drop-shadow-[0_0.5rem_0.5rem_rgba(0,0,0,0.50)]"/>
+        <div className="relative mt-4 xs:mt-0">
+          <picture>
+            <source srcSet="/images/great-seal-outlined-sm.png" media="(max-width: 475px)"/>
+            <img src="/images/great-seal-outlined.png" alt="Great Seal" className="object-none h-[50vh] xs:-ml-3 drop-shadow-[0_0.5rem_0.5rem_rgba(0,0,0,0.50)]"/>
+          </picture>
+        </div>
          <div className="flex flex-col items-center space-y-3 my-12">
           <input id="first-name" className="h-11 text-lg px-6 w-80 rounded-full" type="text" name="firstName" placeholder="First Name" onChange={changeHandler}/>
           <input id="last-name" className="h-11 text-lg px-6 w-80 rounded-full" type="text" name="lastName" placeholder="Last Name" onChange={changeHandler}/>
