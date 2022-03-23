@@ -1,10 +1,14 @@
 // Next.js API route support: https://nextjs.org/docs/api-routes/introduction
-export default function handler(req, res) {
-  const body = req.body
-  console.log('body', body)
+import { Client } from 'pg'
 
-  if(!body.email || !body.password){
-    return res.status(400).json({data: 'Email or password not found'})
-  }
+export default async function handler(req, res) {
+  const body = req.body
+  const checkForUser = `SELECT exists (SELECT 1 FROM employer_login WHERE email = ${body}.email AND hash_pass = ${body}.password);`
+  const client = new Client({connectionString: process.env.DATABASE_URL})
+  await client.connect()
+  const response = await client.query(checkForUser)
+  console.log('res', response)
+  await client.end()
+
   res.status(200).json({ data: `${body.email} ${body.password}` })
 }
