@@ -47,7 +47,7 @@ const NewEmployerAccountDetail = () => {
             <source srcSet="/images/great-seal-outlined-sm.png" media="(max-width: 475px)"/>
             <img src="/images/great-seal-outlined.png" alt="Great Seal" className="object-none h-[50vh] xs:-ml-3 drop-shadow-[0_0.5rem_0.5rem_rgba(0,0,0,0.50)]"/>
           </picture>
-          <img className="absolute top-0 w-72 right-6" src="/images/uncle-sam.png" alt="Uncle Sam" />
+          <img className="absolute top-0 w-72 right-1/3" src="/images/uncle-sam.png" alt="Uncle Sam" />
           <div className="hero-quote-wrapper absolute top-56 w-64 flex z-10">
             <HeroQuote
               quote="&quot;We want you to succeed in business&#x21;&quot;"
@@ -61,7 +61,7 @@ const NewEmployerAccountDetail = () => {
             </div>
           </div>
         </div>
-         <div className="flex flex-col items-center space-y-3 my-6">
+        <div id="inputs" className="absolute top-[75%] flex flex-col items-center space-y-3">
           <input id="first-name" className="h-11 text-lg px-6 w-80 rounded-full" type="text" name="firstName" placeholder="First Name" onChange={changeHandler}/>
           <input id="last-name" className="h-11 text-lg px-6 w-80 rounded-full" type="text" name="lastName" placeholder="Last Name" onChange={changeHandler}/>
           <input id="business-name" className="h-11 text-lg px-6 w-80 rounded-full" type="text" name="businessName" placeholder="Business Name" onChange={changeHandler}/>
