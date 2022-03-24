@@ -2,6 +2,8 @@
 import ButtonWithArrow from "../../assets/ButtonWithArrow"
 import EmployerOnboardHeader from "../EmployerOnboardHeader/index"
 import SectionWrapper from "../SectionWrapper/index"
+import HeroQuote from "../../assets/HeroQoute"
+import HeroWho from "../../assets/HeroWho"
 
 
 const CreateEmployerAccount = ({show, changeHandler, eventHandler}) => {
@@ -26,18 +28,17 @@ const CreateEmployerAccount = ({show, changeHandler, eventHandler}) => {
         <div className="flex justify-center relative pt-4 pb-8">
           <img className="w-80" src="/images/banner-combo.svg" alt="Red Balloon American Hero" />
           <img className="absolute -top-6 w-96 drop-shadow-[0_0.5rem_0.5rem_rgba(0,0,0,0.50)]" src="/images/job-seeker.png" alt="Red Balloon American Hero" />
-          <div className="hero-quote-wrapper absolute bottom-[13.5rem] flex z-10">
-            <div className="hero-quote bg-rbBlue w-72 text-rbWhite text-center flex flex-wrap">
-              <span className="px-6 py-2 text-lg font-medium leading-5">&quot;Employers love that I&apos;m a motivated self-starter!&quot;</span>
-            </div>
-
+          <div className="hero-quote-wrapper absolute bottom-[13.5rem] flex z-10">  
+            <HeroQuote
+              quote="&quot;Employers love that I&apos;m a motivated self-starter!&quot;"
+            />
           </div>
           <div className="hero-who bg-rbRed w-72 h-[4.9rem] absolute bottom-36 text-rbWhite font-light italic">
-            <div className="flex flex-col items-center py-2">
-              <span className="px-6 -my-1 text-lg">Stephen Grammer,</span>
-              <span className="px-6 -my-1 text-lg">American Hero</span>
-              <span className="px-6 my-1 text-sm">Actual RedBalloon Job-Seeker</span>
-            </div>
+            <HeroWho
+              line1="Stephen Grammer,"
+              line2="American Hero"
+              line3="Actual RedBalloon Job-Seeker"
+            />
           </div>
         </div>
       </div>
