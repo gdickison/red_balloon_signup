@@ -42,21 +42,25 @@ const NewEmployerAccountDetail = () => {
           headerText="Keep Going!"
           stepText="STEP 3/5 - We need just a bit more information to set up your account"
         />
-        <div id="uncle-andrew" className="relative left-[150%] mt-8 xs:mt-0 flex flex-col justify-center items-center">
-          <picture className="">
-            <source srcSet="/images/happy-rb-man-sm.png" media="(max-width: 475px)"/>
-            <img className="min-w-[500px] min-h-[400px]" src="/images/happy-rb-man.png" alt="Uncle Sam" />
-          </picture>
-          <div className="hero-quote-wrapper absolute top-56 w-64 flex z-10">
-            <HeroQuote
-              quote="&quot;We want you to succeed in business&#x21;&quot;"
-            />
-          </div>
-          <div className="hero-who bg-rbRed w-72 absolute top-72 text-rbWhite font-light italic">
-            <div className="flex flex-col items-center py-2">
-              <span className="px-6 -my-1 text-lg">ANDREW CRAPUCHETTES,</span>
-              <span className="px-6 -my-1 text-lg">CEO &amp; Actual RedBalloon</span>
-              <span className="px-6 -my-1 text-sm">Job Employer</span>
+        <div id="uncle-andrew" className="w-screen flex flex-col relative left-[-150%]">
+          <div className="absolute left-0 right-0 h-auto w-auto mt-4 xs:mt-0 flex flex-col justify-center items-center">
+            <div>
+              <picture>
+                <source srcSet="/images/happy-rb-man-sm.png" media="(max-width: 475px)"/>
+                <img src="/images/happy-rb-man.png" alt="Uncle Sam" />
+              </picture>
+            </div>
+            <div className="hero-quote-wrapper absolute top-52 w-64 flex z-10">
+              <HeroQuote
+                quote="&quot;We want you to succeed in business&#x21;&quot;"
+              />
+            </div>
+            <div className="hero-who bg-rbRed w-72 absolute top-64 pt-3 text-rbWhite font-light italic">
+              <div className="flex flex-col items-center py-2">
+                <span className="px-6 -my-1 text-lg">ANDREW CRAPUCHETTES,</span>
+                <span className="px-6 -my-1 text-lg">CEO &amp; Actual RedBalloon</span>
+                <span className="px-6 -my-1 text-sm">Job Employer</span>
+              </div>
             </div>
           </div>
         </div>
