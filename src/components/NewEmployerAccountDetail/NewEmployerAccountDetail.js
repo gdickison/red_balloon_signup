@@ -46,16 +46,16 @@ const NewEmployerAccountDetail = () => {
           <div className="absolute left-0 right-0 h-auto w-auto mt-4 xs:mt-0 flex flex-col justify-center items-center">
             <div>
               <picture>
-                <source srcSet="/images/happy-rb-man-sm.png" media="(max-width: 475px)"/>
-                <img src="/images/happy-rb-man.png" alt="Uncle Sam" />
+                <source srcSet="/images/happy-rb-man-sm-sharp.png" media="(max-width: 475px)"/>
+                <img src="/images/happy-rb-man-bg-sharp.png" alt="Uncle Sam" />
               </picture>
             </div>
-            <div className="hero-quote-wrapper absolute top-52 w-64 flex z-10">
+            <div className="hero-quote-wrapper absolute top-52 xs:top-64 w-64 flex z-10">
               <HeroQuote
                 quote="&quot;We want you to succeed in business&#x21;&quot;"
               />
             </div>
-            <div className="hero-who bg-rbRed w-72 absolute top-64 pt-3 text-rbWhite font-light italic">
+            <div className="hero-who bg-rbRed w-72 absolute top-64 xs:top-80 pt-3 xs:pt-0 xs:-mt-2 text-rbWhite font-light italic">
               <div className="flex flex-col items-center py-2">
                 <span className="px-6 -my-1 text-lg">ANDREW CRAPUCHETTES,</span>
                 <span className="px-6 -my-1 text-lg">CEO &amp; Actual RedBalloon</span>
