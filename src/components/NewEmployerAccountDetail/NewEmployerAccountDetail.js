@@ -43,7 +43,7 @@ const NewEmployerAccountDetail = () => {
           stepText="STEP 3/5 - We need just a bit more information to set up your account"
         />
         <div id="uncle-andrew" className="relative left-[150%] mt-8 xs:mt-0 flex flex-col justify-center items-center">
-          <picture>
+          <picture className="">
             <source srcSet="/images/happy-rb-man-sm.png" media="(max-width: 475px)"/>
             <img className="min-w-[500px] min-h-[400px]" src="/images/happy-rb-man.png" alt="Uncle Sam" />
           </picture>

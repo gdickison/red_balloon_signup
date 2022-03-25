@@ -4,6 +4,7 @@ import EmployerOnboardHeader from "../EmployerOnboardHeader/index"
 import SectionWrapper from "../SectionWrapper/index"
 import HeroQuote from "../../assets/HeroQoute"
 import HeroWho from "../../assets/HeroWho"
+import Copyright from "../../assets/Copyright"
 
 
 const CreateEmployerAccount = ({show, changeHandler, eventHandler}) => {
@@ -15,7 +16,7 @@ const CreateEmployerAccount = ({show, changeHandler, eventHandler}) => {
             headerText="Create Your Account"
             stepText={["STEP 1/5 - Already have an account? ", <a key={Math.random()} className="underline" href="#">Log in</a>]}
           />
-          <div className="flex flex-col items-center space-y-3 my-12 relative">
+          <div className="flex flex-col items-center space-y-3 my-6 relative">
             <input id="email-input" className="h-11 text-lg px-6 w-80 rounded-full" type="email" name="email" placeholder="Your Email" onChange={changeHandler}/>
             <input className="h-11 text-lg px-6 w-80 rounded-full" type="password" name="password" placeholder="Your Password" onChange={changeHandler}/>
             <ButtonWithArrow
@@ -42,6 +43,7 @@ const CreateEmployerAccount = ({show, changeHandler, eventHandler}) => {
           </div>
         </div>
       </div>
+      <Copyright/>
     </SectionWrapper>
   )
 }
