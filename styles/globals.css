@@ -152,7 +152,7 @@ body {
     opacity: 1;
     position: absolute;
   }
-  70% {
+  75% {
     left: 0;
     top: 20%;
     opacity: 1;
@@ -173,7 +173,7 @@ body {
 }
 
 #uncle-andrew {
-  animation: uncleAndrewFlyIn ease 3s;
+  animation: uncleAndrewFlyIn ease 4s;
   animation-delay: 0.5s;
   animation-fill-mode: forwards;
 }
@@ -189,6 +189,6 @@ body {
 
 #inputs {
   animation: inputSlideUp ease 1000ms;
-  animation-delay: 2500ms;
+  animation-delay: 3500ms;
   animation-fill-mode: forwards;
 }
