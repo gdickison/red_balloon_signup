@@ -168,7 +168,7 @@ body {
 }
 
 #uncle-andrew {
-  animation: uncleAndrewFlyIn ease 4s;
+  animation: uncleAndrewFlyIn ease 3s;
   animation-delay: 0.5s;
   animation-fill-mode: forwards;
 }
@@ -183,7 +183,7 @@ body {
 }
 
 #inputs {
-  animation: inputSlideUp ease 2000ms;
-  animation-delay: 3500ms;
+  animation: inputSlideUp ease 1000ms;
+  animation-delay: 2500ms;
   animation-fill-mode: forwards;
 }
