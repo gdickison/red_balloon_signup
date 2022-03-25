@@ -64,7 +64,7 @@ const NewEmployerAccountDetail = () => {
             </div>
           </div>
         </div>
-        <div id="inputs" className="absolute top-[75%] flex flex-col items-center space-y-3 mt-4 w-5/6 max-w-screen-sm">
+        <div id="inputs" className="absolute top-[65%] flex flex-col items-center space-y-3 mt-4 w-5/6 max-w-screen-sm">
           <input id="first-name" className="h-11 text-lg px-6 w-full rounded-full" type="text" name="firstName" placeholder="First Name" onChange={changeHandler}/>
           <input id="last-name" className="h-11 text-lg px-6 w-full rounded-full" type="text" name="lastName" placeholder="Last Name" onChange={changeHandler}/>
           <input id="business-name" className="h-11 text-lg px-6 w-full rounded-full" type="text" name="businessName" placeholder="Business Name" onChange={changeHandler}/>

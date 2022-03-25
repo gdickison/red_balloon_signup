@@ -180,15 +180,15 @@ body {
 
 @keyframes inputSlideUp {
   0% {
-    top: 75%;
+    top: 65%;
   }
   100% {
-    top: 20%;
+    top: 22%;
   }
 }
 
-/* #inputs {
+#inputs {
   animation: inputSlideUp ease 1000ms;
   animation-delay: 2500ms;
   animation-fill-mode: forwards;
-} */
+}
