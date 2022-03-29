@@ -69,8 +69,8 @@ const NewEmployerAccountDetail = () => {
           <input id="last-name" className="h-11 text-lg px-6 w-full rounded-full" type="text" name="lastName" placeholder="Last Name" onChange={changeHandler}/>
           <input id="business-name" className="h-11 text-lg px-6 w-full rounded-full" type="text" name="businessName" placeholder="Business Name" onChange={changeHandler}/>
           <input id="website" className="h-11 text-lg px-6 w-full rounded-full" type="url" name="website" placeholder="Website" onChange={changeHandler}/>
-          <input id="address-1" className="h-11 text-lg px-6 w-full rounded-full" type="text" name="address1" placeholder="Address 1" onChange={changeHandler}/>
-          <input id="address-2" className="h-11 text-lg px-6 w-full rounded-full" type="text" name="address2" placeholder="Address 2" onChange={changeHandler}/>
+          <input id="phone" className="h-11 text-lg px-6 w-full rounded-full" type="tel" name="phone" placeholder="Phone (555-555-1212)" onChange={changeHandler}/>
+          <input id="address" className="h-11 text-lg px-6 w-full rounded-full" type="text" name="address" placeholder="Business Address" onChange={changeHandler}/>
           <input id="city" className="h-11 text-lg px-6 w-full rounded-full" type="text" name="city" placeholder="City" onChange={changeHandler}/>
           <div className="flex w-full justify-between">
             <input id="state" className="h-11 text-lg px-6 w-[48%] rounded-full" type="text" name="state" placeholder="State" onChange={changeHandler}/>
