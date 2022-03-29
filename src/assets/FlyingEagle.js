@@ -3,7 +3,7 @@ const FlyingEagle = ({show}) => {
   return (
     <>
       {show &&
-        <img id="flying-eagle" className="fixed top-1/3 left-[-110%] animated" src="/images/flying-eagle.png" alt="Flying Eagle" />
+        <img id="flying-eagle" className="fixed top-44 left-[-110%] animated" src="/images/flying-eagle.png" alt="Flying Eagle" />
       }
     </>
   )

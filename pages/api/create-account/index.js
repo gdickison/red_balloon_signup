@@ -3,6 +3,8 @@ import { Client } from 'pg'
 
 export default async function handler(req, res) {
   const body = req.body
+  console.log(body.email)
+  console.log(body.password)
   // const checkForUser = `SELECT exists (SELECT 1 FROM employer_login WHERE email = ${body}.email AND hash_pass = ${body}.password);`
   // const client = new Client({connectionString: process.env.DATABASE_URL})
   // await client.connect()
