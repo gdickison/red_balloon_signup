@@ -192,3 +192,18 @@ body {
   animation-delay: 3500ms;
   animation-fill-mode: forwards;
 }
+
+@keyframes copyrightShow {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+#copyright {
+  animation: copyrightShow ease 500ms;
+  animation-delay: 4500ms;
+  animation-fill-mode: forwards;
+}
