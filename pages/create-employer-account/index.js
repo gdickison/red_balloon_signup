@@ -14,11 +14,12 @@ export default function Home() {
   const handleChange = e => {
     e.preventDefault()
     setNewUser({...newUser, [e.target.name]: e.target.value})
-    console.log(newUser)
   }
 
   const handleCreateAccount = async e => {
     e.preventDefault()
+    localStorage.setItem("email", newUser.email)
+    localStorage.setItem("password", newUser.password)
     const JSONdata = JSON.stringify(newUser)
     const endpoint = '/api/create-account'
 
@@ -34,7 +35,6 @@ export default function Home() {
 
     const result = await response.json()
 
-    console.log(result)
     document.getElementById("create-employer-account").classList.add("fade-out")
 
     setShowFlyingEagle(true)
@@ -43,7 +43,6 @@ export default function Home() {
     }, 1900)
     setTimeout(() => {
       setShowEmployerPledge(true)
-      console.log('time!')
     },1800)
   }
 
@@ -55,7 +54,6 @@ export default function Home() {
 
   const handlePledge = async e => {
     e.preventDefault()
-    console.log('click')
     const JSONdata = JSON.stringify(pledge.textContent)
     const endpoint = '/api/employer-pledge'
 
@@ -66,11 +64,9 @@ export default function Home() {
       },
       body: JSONdata,
     }
-console.log(options)
     const response = await fetch(endpoint, options)
     const result = await response.json()
 
-    console.log(result)
     router.push('/new-employer-account-detail')
   }
 
@@ -81,11 +77,9 @@ console.log(options)
         eventHandler={handleCreateAccount}
         changeHandler={handleChange}
       />
-      {/* Flying eagle transition */}
       <FlyingEagle
         show={showFlyingEagle}
       />
-      {/* Take the pledge */}
       <EmployerPledge
         show={showEmployerPledge}
         changeHandler={handleChecked}
