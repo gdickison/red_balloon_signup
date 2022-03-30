@@ -34,7 +34,7 @@ const NewEmployerAccountDetail = () => {
     const result = await response.json()
 
     if(response.status === 200){
-      router.push('/redirect-to-jbhq')
+      router.push('/new-employer-signup')
     }
   }
   return (

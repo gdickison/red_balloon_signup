@@ -1,7 +1,7 @@
 /* eslint-disable @next/next/no-sync-scripts */
 import Head from "next/head"
 
-const RedirectToJbhq = () => {
+const NewEmployerSignup = () => {
 
   const runLogin = () => {
     const t = {'action':'login','username': localStorage.getItem("email"), 'password': localStorage.getItem("password")};
@@ -20,4 +20,4 @@ const RedirectToJbhq = () => {
   )
 }
 
-export default RedirectToJbhq
+export default NewEmployerSignup
