@@ -3,9 +3,9 @@ import SectionWrapper from "../SectionWrapper/index"
 import EmployerOnboardHeader from "../EmployerOnboardHeader/index"
 import ButtonNoArrow from "../../assets/ButtonNoArrow"
 import Copyright from "../../assets/Copyright"
-import { useState } from 'react'
+import Alert from "../../assets/Alert"
 
-const EmployerPledge = ({show, checked, changeHandler, eventHandler}) => {
+const EmployerPledge = ({show, checked, changeHandler, eventHandler, showAlert, closeAlert}) => {
   return (
     <SectionWrapper show={show}>
       <div className="flex flex-col justify-center items-center">
@@ -13,7 +13,7 @@ const EmployerPledge = ({show, checked, changeHandler, eventHandler}) => {
           headerText="Employer Pledge"
           stepText="STEP 2/5"
         />
-        <div id="pledge" className="flex flex-col justify-center text-rbWhite text-center">
+        <div id="pledge" className={`flex flex-col justify-center text-rbWhite text-center ${showAlert ? 'opacity-60' : 'opacity-100'}`}>
           <h1 className="text-4xl tracking-tight mt-4 mb-6">By signing up for RedBalloon, I pledge</h1>
           <div className="flex flex-col justify-center space-y-3 w-60 mx-auto text-lg leading-5">
             <hr className="border-[1px] w-44 mx-auto" />
@@ -29,13 +29,19 @@ const EmployerPledge = ({show, checked, changeHandler, eventHandler}) => {
             <hr className="border-[1px] w-44 mx-auto" />
           </div>
         </div>
-        <div className="flex items-center mt-5 mb-6 space-x-2 w-60">
+        <div className={`flex items-center mt-5 mb-6 space-x-2 w-60 ${showAlert ? 'border-4' : 'border-0'}`}>
           <input className="h-8 w-24 text-base rounded-full" type="checkbox" checked={checked} onChange={changeHandler}/>
           <p className="text-rbWhite text-base leading-5">I have read and agree to the <a className="underline lg:no-underline lg:hover:underline" href="https://www.redballoon.work/page/terms" target="_blank" rel="noreferrer">Terms of Service</a> and the Employer Pledge</p>
         </div>
         <ButtonNoArrow buttonText="CONTINUE" eventHandler={eventHandler}/>
         <img className="h-28 mt-4 mb-12" src="/images/red-balloon-seal-of-approval.svg" alt="Red Balloon Seal Of Approval" />
       </div>
+      {showAlert &&
+        <Alert
+          message="You must agree to the Pledge and the Terms of Service"
+          closeAlert={closeAlert}
+        />
+      }
       <Copyright/>
     </SectionWrapper>
   )

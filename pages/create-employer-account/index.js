@@ -9,15 +9,21 @@ export default function Home() {
   const [showCreateEmployerAccount, setShowCreateEmployerAccount] = useState(true)
   const [showFlyingEagle, setShowFlyingEagle] = useState(false)
   const [showEmployerPledge, setShowEmployerPledge] = useState(false)
+  const [showAlert, setShowAlert] = useState(false)
   const router = useRouter()
 
   const handleChange = e => {
     e.preventDefault()
+    setShowAlert(false)
     setNewUser({...newUser, [e.target.name]: e.target.value})
   }
 
   const handleCreateAccount = async e => {
     e.preventDefault()
+    if(!newUser.email || !newUser.password){
+      setShowAlert(true)
+      return
+    }
     localStorage.setItem("email", newUser.email)
     localStorage.setItem("password", newUser.password)
     const JSONdata = JSON.stringify(newUser)
@@ -46,14 +52,23 @@ export default function Home() {
     },1800)
   }
 
+  const closeAlert = () => {
+    setShowAlert(false)
+  }
+
   const [checked, setChecked] = useState(false)
 
   const handleChecked = () => {
+    setShowAlert(false)
     setChecked(!checked)
   }
 
   const handlePledge = async e => {
     e.preventDefault()
+    if(!checked){
+      setShowAlert(true)
+      return
+    }
     const JSONdata = JSON.stringify(pledge.textContent)
     const endpoint = '/api/employer-pledge'
 
@@ -76,6 +91,8 @@ export default function Home() {
         show={showCreateEmployerAccount}
         eventHandler={handleCreateAccount}
         changeHandler={handleChange}
+        showAlert={showAlert}
+        closeAlert={closeAlert}
       />
       <FlyingEagle
         show={showFlyingEagle}
@@ -85,6 +102,8 @@ export default function Home() {
         changeHandler={handleChecked}
         checked={checked}
         eventHandler={handlePledge}
+        showAlert={showAlert}
+        closeAlert={closeAlert}
       />
     </div>
   )
