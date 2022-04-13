@@ -19,24 +19,46 @@ const NewEmployerAccountDetail = () => {
     phone: null,
     address: null,
     city: null,
-    state: null,
-    zip: null,
+    region: null,
+    postalCode: null,
     why: null,
     source: null
   })
   const [showAlert, setShowAlert] = useState(false)
+  const [alertMessage, setAlertMessage] = useState("")
 
   const changeHandler = e => {
     e.preventDefault()
     setShowAlert(false)
     setNewEmployerDetail({...newEmployerDetail, [e.target.name]: e.target.value})
+    console.log(newEmployerDetail)
+  }
+
+  const phoneNumberFormatter = () => {
+    const inputField = document.getElementById("phone")
+    const formattedInputValue = formatPhoneNumber(inputField.value)
+    inputField.value = formattedInputValue
+  }
+
+  const formatPhoneNumber = (value) => {
+    if(!value) return value;
+    const phoneNumber = value.replace(/[^\d]/g, '');
+    const phoneNumberLength = phoneNumber.length;
+    if(phoneNumberLength < 4) return phoneNumber;
+    if(phoneNumberLength < 7) {
+      return `${phoneNumber.slice(0,3)}-${phoneNumber.slice(3)}`;
+    }
+
+    return `${phoneNumber.slice(0,3)}-${phoneNumber.slice(3,6)}-${phoneNumber.slice(6,9)}`;
   }
 
   const eventHandler = async e => {
     e.preventDefault()
     for(const item in newEmployerDetail){
-      if(newEmployerDetail[item] === null){
+      if(newEmployerDetail[item] === null || (newEmployerDetail.phone !== null && newEmployerDetail.phone.length < 12)){
         setShowAlert(true)
+        const alertText = newEmployerDetail[item] === null ? "All fields are required" : newEmployerDetail.phone.length < 12 ? "Phone number must be 10 digits" : ""
+        setAlertMessage(alertText)
         return
       }
     }
@@ -62,6 +84,7 @@ const NewEmployerAccountDetail = () => {
 
   const closeAlert = () => {
     setShowAlert(false)
+    setAlertMessage("")
   }
 
   return (
@@ -103,12 +126,12 @@ const NewEmployerAccountDetail = () => {
             <input id="last-name" className={`h-11 text-lg px-6 w-full rounded-full ${showAlert && !newEmployerDetail.lastName ? 'border-4 border-rbBlue' : showAlert ? 'border-0 opacity-60' : 'border-0'}`} type="text" name="lastName" placeholder="Last Name" onChange={changeHandler}/>
             <input id="business-name" className={`h-11 text-lg px-6 w-full rounded-full ${showAlert && !newEmployerDetail.businessName ? 'border-4 border-rbBlue' : showAlert ? 'border-0 opacity-60' : 'border-0'}`} type="text" name="businessName" placeholder="Business Name" onChange={changeHandler}/>
             <input id="website" className={`h-11 text-lg px-6 w-full rounded-full ${showAlert && !newEmployerDetail.website ? 'border-4 border-rbBlue' : showAlert ? 'border-0 opacity-60' : 'border-0'}`} type="url" name="website" placeholder="Website" onChange={changeHandler}/>
-            <input id="phone" className={`h-11 text-lg px-6 w-full rounded-full ${showAlert && !newEmployerDetail.phone ? 'border-4 border-rbBlue' : showAlert ? 'border-0 opacity-60' : 'border-0'}`} type="tel" name="phone" placeholder="Phone (555-555-1212)" onChange={changeHandler}/>
+            <input id="phone" className={`h-11 text-lg px-6 w-full rounded-full ${showAlert && (!newEmployerDetail.phone || newEmployerDetail.phone.length < 12) ? 'border-4 border-rbBlue' : showAlert ? 'border-0 opacity-60' : 'border-0'}`} type="tel" name="phone" placeholder="Phone 555-555-1212" onKeyDown={phoneNumberFormatter} onChange={changeHandler}/>
             <input id="address" className={`h-11 text-lg px-6 w-full rounded-full ${showAlert && !newEmployerDetail.address ? 'border-4 border-rbBlue' : showAlert ? 'border-0 opacity-60' : 'border-0'}`} type="text" name="address" placeholder="Business Address" onChange={changeHandler}/>
             <input id="city" className={`h-11 text-lg px-6 w-full rounded-full ${showAlert && !newEmployerDetail.city ? 'border-4 border-rbBlue' : showAlert ? 'border-0 opacity-60' : 'border-0'}`} type="text" name="city" placeholder="City" onChange={changeHandler}/>
             <div className="flex w-full justify-between">
-              <input id="state" className={`h-11 text-lg px-6 w-[48%] rounded-full ${showAlert && !newEmployerDetail.state ? 'border-4 border-rbBlue' : showAlert ? 'border-0 opacity-60' : 'border-0'}`} type="text" name="state" placeholder="State" onChange={changeHandler}/>
-              <input id="zip" className={`h-11 text-lg px-6 w-[48%] rounded-full ${showAlert && !newEmployerDetail.zip ? 'border-4 border-rbBlue' : showAlert ? 'border-0 opacity-60' : 'border-0'}`} type="text" name="zip" placeholder="Zip" onChange={changeHandler}/>
+              <input id="region" className={`h-11 text-lg px-6 w-[48%] rounded-full ${showAlert && !newEmployerDetail.region ? 'border-4 border-rbBlue' : showAlert ? 'border-0 opacity-60' : 'border-0'}`} type="text" name="region" placeholder="State/Province" onChange={changeHandler}/>
+              <input id="postal-code" className={`h-11 text-lg px-6 w-[48%] rounded-full ${showAlert && !newEmployerDetail.postalCode ? 'border-4 border-rbBlue' : showAlert ? 'border-0 opacity-60' : 'border-0'}`} type="text" name="postalCode" placeholder="Zip/Postal Code" onChange={changeHandler}/>
             </div>
             <input id="why" className={`h-11 text-lg px-6 w-full rounded-full ${showAlert && !newEmployerDetail.why ? 'border-4 border-rbBlue' : showAlert ? 'border-0 opacity-60' : 'border-0'}`} type="text" name="why" placeholder="Why do you want to join RedBalloon?" onChange={changeHandler}/>
             <input id="source" className={`h-11 text-lg px-6 w-full rounded-full ${showAlert && !newEmployerDetail.source ? 'border-4 border-rbBlue' : showAlert ? 'border-0 opacity-60' : 'border-0'}`} type="text" name="source" placeholder="How did you hear about us?" onChange={changeHandler}/>
@@ -120,7 +143,7 @@ const NewEmployerAccountDetail = () => {
         </div>
         {showAlert &&
           <Alert
-            message="All fields are required"
+            message={alertMessage}
             closeAlert={closeAlert}
           />
         }
