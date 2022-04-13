@@ -55,9 +55,9 @@ const NewEmployerAccountDetail = () => {
   const eventHandler = async e => {
     e.preventDefault()
     for(const item in newEmployerDetail){
-      if(newEmployerDetail[item] === null || (newEmployerDetail.phone !== null && newEmployerDetail.phone.length < 12)){
+      if(newEmployerDetail[item] === null || (newEmployerDetail.phone !== null && (newEmployerDetail.phone.length < 12 || newEmployerDetail.phone.length > 12))){
         setShowAlert(true)
-        const alertText = newEmployerDetail[item] === null ? "All fields are required" : newEmployerDetail.phone.length < 12 ? "Phone number must be 10 digits" : ""
+        const alertText = newEmployerDetail[item] === null ? "All fields are required" : (newEmployerDetail.phone.length < 12 || newEmployerDetail.phone.length > 12) ? "Phone number must be 10 digits" : ""
         setAlertMessage(alertText)
         return
       }
@@ -126,7 +126,7 @@ const NewEmployerAccountDetail = () => {
             <input id="last-name" className={`h-11 text-lg px-6 w-full rounded-full ${showAlert && !newEmployerDetail.lastName ? 'border-4 border-rbBlue' : showAlert ? 'border-0 opacity-60' : 'border-0'}`} type="text" name="lastName" placeholder="Last Name" onChange={changeHandler}/>
             <input id="business-name" className={`h-11 text-lg px-6 w-full rounded-full ${showAlert && !newEmployerDetail.businessName ? 'border-4 border-rbBlue' : showAlert ? 'border-0 opacity-60' : 'border-0'}`} type="text" name="businessName" placeholder="Business Name" onChange={changeHandler}/>
             <input id="website" className={`h-11 text-lg px-6 w-full rounded-full ${showAlert && !newEmployerDetail.website ? 'border-4 border-rbBlue' : showAlert ? 'border-0 opacity-60' : 'border-0'}`} type="url" name="website" placeholder="Website" onChange={changeHandler}/>
-            <input id="phone" className={`h-11 text-lg px-6 w-full rounded-full ${showAlert && (!newEmployerDetail.phone || newEmployerDetail.phone.length < 12) ? 'border-4 border-rbBlue' : showAlert ? 'border-0 opacity-60' : 'border-0'}`} type="tel" name="phone" placeholder="Phone 555-555-1212" onKeyDown={phoneNumberFormatter} onChange={changeHandler}/>
+            <input id="phone" className={`h-11 text-lg px-6 w-full rounded-full ${showAlert && (!newEmployerDetail.phone || newEmployerDetail.phone.length < 12 || newEmployerDetail.phone.length > 12) ? 'border-4 border-rbBlue' : showAlert ? 'border-0 opacity-60' : 'border-0'}`} type="tel" name="phone" placeholder="Phone 555-555-1212" onKeyDown={phoneNumberFormatter} onChange={changeHandler}/>
             <input id="address" className={`h-11 text-lg px-6 w-full rounded-full ${showAlert && !newEmployerDetail.address ? 'border-4 border-rbBlue' : showAlert ? 'border-0 opacity-60' : 'border-0'}`} type="text" name="address" placeholder="Business Address" onChange={changeHandler}/>
             <input id="city" className={`h-11 text-lg px-6 w-full rounded-full ${showAlert && !newEmployerDetail.city ? 'border-4 border-rbBlue' : showAlert ? 'border-0 opacity-60' : 'border-0'}`} type="text" name="city" placeholder="City" onChange={changeHandler}/>
             <div className="flex w-full justify-between">
