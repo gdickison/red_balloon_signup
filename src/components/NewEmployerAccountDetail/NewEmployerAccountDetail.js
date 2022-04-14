@@ -20,6 +20,7 @@ const NewEmployerAccountDetail = () => {
     address: "",
     city: "",
     region: "",
+    countryCode: "",
     postalCode: "",
     why: "",
     source: ""
@@ -30,6 +31,11 @@ const NewEmployerAccountDetail = () => {
   const changeHandler = e => {
     e.preventDefault()
     setShowAlert(false)
+
+    if(e.target.name === 'region'){
+      setNewEmployerDetail(newEmployerDetail.countryCode = e.target.selectedOptions[0].dataset.countryCode)
+    }
+
     setNewEmployerDetail({...newEmployerDetail, [e.target.name]: e.target.value})
 
     if(e.target.name === 'region'){
@@ -37,7 +43,10 @@ const NewEmployerAccountDetail = () => {
     }
   }
 
-  const phoneNumberFormatter = () => {
+  const phoneNumberFormatter = (e) => {
+    if(e.key === 'Tab'){
+      return
+    }
     const inputField = document.getElementById("phone")
     const formattedInputValue = formatPhoneNumber(inputField.value)
     inputField.value = formattedInputValue
@@ -135,70 +144,70 @@ const NewEmployerAccountDetail = () => {
             <div className="flex w-full justify-between">
               <select id="region" className={`text-gray-400 h-11 text-lg px-6 w-[48%] rounded-full bg-rbWhite ${showAlert && !newEmployerDetail.region ? 'border-4 border-rbBlue' : showAlert ? 'border-0 opacity-60' : 'border-0'}`} name="region" placeholder="State/Province" defaultValue={null} onChange={changeHandler}>
                 <option value={null} hidden>State/Province</option>
-                <option value="AL">Alabama</option>
-                <option value="AK">Alaska</option>
-                <option value="AZ">Arizona</option>
-                <option value="AR">Arkansas</option>
-                <option value="CA">California</option>
-                <option value="CO">Colorado</option>
-                <option value="CT">Connecticut</option>
-                <option value="DE">Delaware</option>
-                <option value="DC">District Of Columbia</option>
-                <option value="FL">Florida</option>
-                <option value="GA">Georgia</option>
-                <option value="HI">Hawaii</option>
-                <option value="ID">Idaho</option>
-                <option value="IL">Illinois</option>
-                <option value="IN">Indiana</option>
-                <option value="IA">Iowa</option>
-                <option value="KS">Kansas</option>
-                <option value="KY">Kentucky</option>
-                <option value="LA">Louisiana</option>
-                <option value="ME">Maine</option>
-                <option value="MD">Maryland</option>
-                <option value="MA">Massachusetts</option>
-                <option value="MI">Michigan</option>
-                <option value="MN">Minnesota</option>
-                <option value="MS">Mississippi</option>
-                <option value="MO">Missouri</option>
-                <option value="MT">Montana</option>
-                <option value="NE">Nebraska</option>
-                <option value="NV">Nevada</option>
-                <option value="NH">New Hampshire</option>
-                <option value="NJ">New Jersey</option>
-                <option value="NM">New Mexico</option>
-                <option value="NY">New York</option>
-                <option value="NC">North Carolina</option>
-                <option value="ND">North Dakota</option>
-                <option value="OH">Ohio</option>
-                <option value="OK">Oklahoma</option>
-                <option value="OR">Oregon</option>
-                <option value="PA">Pennsylvania</option>
-                <option value="RI">Rhode Island</option>
-                <option value="SC">South Carolina</option>
-                <option value="SD">South Dakota</option>
-                <option value="TN">Tennessee</option>
-                <option value="TX">Texas</option>
-                <option value="UT">Utah</option>
-                <option value="VT">Vermont</option>
-                <option value="VA">Virginia</option>
-                <option value="WA">Washington</option>
-                <option value="WV">West Virginia</option>
-                <option value="WI">Wisconsin</option>
-                <option value="WY">Wyoming</option>
-                <option value="AB">Alberta</option>
-                <option value="BC">British Columbia</option>
-                <option value="MB">Manitoba</option>
-                <option value="NB">New Brunswick</option>
-                <option value="NL">Newfoundland and Labrador</option>
-                <option value="NS">Nova Scotia</option>
-                <option value="ON">Ontario</option>
-                <option value="PE">Prince Edward Island</option>
-                <option value="QC">Quebec</option>
-                <option value="SK">Saskatchewan</option>
-                <option value="NT">Northwest Territories</option>
-                <option value="NU">Nunavut</option>
-                <option value="YT">Yukon</option>
+                <option value="AL" data-country-code="US">Alabama</option>
+                <option value="AK" data-country-code="US">Alaska</option>
+                <option value="AZ" data-country-code="US">Arizona</option>
+                <option value="AR" data-country-code="US">Arkansas</option>
+                <option value="CA" data-country-code="US">California</option>
+                <option value="CO" data-country-code="US">Colorado</option>
+                <option value="CT" data-country-code="US">Connecticut</option>
+                <option value="DE" data-country-code="US">Delaware</option>
+                <option value="DC" data-country-code="US">District Of Columbia</option>
+                <option value="FL" data-country-code="US">Florida</option>
+                <option value="GA" data-country-code="US">Georgia</option>
+                <option value="HI" data-country-code="US">Hawaii</option>
+                <option value="ID" data-country-code="US">Idaho</option>
+                <option value="IL" data-country-code="US">Illinois</option>
+                <option value="IN" data-country-code="US">Indiana</option>
+                <option value="IA" data-country-code="US">Iowa</option>
+                <option value="KS" data-country-code="US">Kansas</option>
+                <option value="KY" data-country-code="US">Kentucky</option>
+                <option value="LA" data-country-code="US">Louisiana</option>
+                <option value="ME" data-country-code="US">Maine</option>
+                <option value="MD" data-country-code="US">Maryland</option>
+                <option value="MA" data-country-code="US">Massachusetts</option>
+                <option value="MI" data-country-code="US">Michigan</option>
+                <option value="MN" data-country-code="US">Minnesota</option>
+                <option value="MS" data-country-code="US">Mississippi</option>
+                <option value="MO" data-country-code="US">Missouri</option>
+                <option value="MT" data-country-code="US">Montana</option>
+                <option value="NE" data-country-code="US">Nebraska</option>
+                <option value="NV" data-country-code="US">Nevada</option>
+                <option value="NH" data-country-code="US">New Hampshire</option>
+                <option value="NJ" data-country-code="US">New Jersey</option>
+                <option value="NM" data-country-code="US">New Mexico</option>
+                <option value="NY" data-country-code="US">New York</option>
+                <option value="NC" data-country-code="US">North Carolina</option>
+                <option value="ND" data-country-code="US">North Dakota</option>
+                <option value="OH" data-country-code="US">Ohio</option>
+                <option value="OK" data-country-code="US">Oklahoma</option>
+                <option value="OR" data-country-code="US">Oregon</option>
+                <option value="PA" data-country-code="US">Pennsylvania</option>
+                <option value="RI" data-country-code="US">Rhode Island</option>
+                <option value="SC" data-country-code="US">South Carolina</option>
+                <option value="SD" data-country-code="US">South Dakota</option>
+                <option value="TN" data-country-code="US">Tennessee</option>
+                <option value="TX" data-country-code="US">Texas</option>
+                <option value="UT" data-country-code="US">Utah</option>
+                <option value="VT" data-country-code="US">Vermont</option>
+                <option value="VA" data-country-code="US">Virginia</option>
+                <option value="WA" data-country-code="US">Washington</option>
+                <option value="WV" data-country-code="US">West Virginia</option>
+                <option value="WI" data-country-code="US">Wisconsin</option>
+                <option value="WY" data-country-code="US">Wyoming</option>
+                <option value="AB" data-country-code="CA">Alberta</option>
+                <option value="BC" data-country-code="CA">British Columbia</option>
+                <option value="MB" data-country-code="CA">Manitoba</option>
+                <option value="NB" data-country-code="CA">New Brunswick</option>
+                <option value="NL" data-country-code="CA">Newfoundland and Labrador</option>
+                <option value="NS" data-country-code="CA">Nova Scotia</option>
+                <option value="ON" data-country-code="CA">Ontario</option>
+                <option value="PE" data-country-code="CA">Prince Edward Island</option>
+                <option value="QC" data-country-code="CA">Quebec</option>
+                <option value="SK" data-country-code="CA">Saskatchewan</option>
+                <option value="NT" data-country-code="CA">Northwest Territories</option>
+                <option value="NU" data-country-code="CA">Nunavut</option>
+                <option value="YT" data-country-code="CA">Yukon</option>
               </select>
               <input id="postal-code" className={`h-11 text-lg px-6 w-[48%] rounded-full ${showAlert && !newEmployerDetail.postalCode ? 'border-4 border-rbBlue' : showAlert ? 'border-0 opacity-60' : 'border-0'}`} type="text" name="postalCode" placeholder="Zip/Postal Code" onChange={changeHandler}/>
             </div>
