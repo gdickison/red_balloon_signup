@@ -100,7 +100,7 @@ const NewEmployerAccountDetail = () => {
   return (
     <>
       <Head>
-        <title>The Courageous Economy</title>
+        <title>RedBalloon</title>
         <link rel="icon" type="image/png" href="/images/RedBalloon-Icon.png"/>
       </Head>
       <SectionWrapper show={true}>

@@ -5,7 +5,7 @@ export default function Home() {
   return (
     <>
       <Head>
-        <title>The Courageous Economy</title>
+        <title>RedBalloon</title>
         <link rel="icon" type="image/png" href="/images/RedBalloon-Icon.png"/>
       </Head>
       <div className="min-h-screen flex flex-col space-y-10 justify-center items-center">

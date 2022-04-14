@@ -12,7 +12,7 @@ const NewEmployerSignup = () => {
   return (
     <div className="h-screen">
       <Head>
-        <title>The Courageous Economy</title>
+        <title>RedBalloon</title>
         <link rel="icon" type="image/png" href="/images/RedBalloon-Icon.png"/>
       </Head>
       <iframe id="rb" src="https://www.redballoon.work/employer/purchase" title="RedBalloon main site" height="100%" width="100%" onLoad={runLogin}></iframe>
