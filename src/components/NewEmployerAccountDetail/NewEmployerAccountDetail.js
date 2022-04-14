@@ -86,7 +86,7 @@ const NewEmployerAccountDetail = () => {
     }
 
     const response = await fetch(endpoint, options)
-
+    console.log(response)
     const result = await response.json()
 
     if(response.status === 200){
