@@ -5,7 +5,7 @@ import ButtonNoArrow from "../../assets/ButtonNoArrow"
 import Copyright from "../../assets/Copyright"
 import Alert from "../../assets/Alert"
 
-const EmployerPledge = ({show, checked, changeHandler, eventHandler, showAlert, closeAlert}) => {
+const EmployerPledge = ({show, checked, changeHandler, eventHandler, showAlert, alertMessage, closeAlert}) => {
   return (
     <SectionWrapper show={show}>
       <div className="flex flex-col justify-center items-center">
@@ -38,7 +38,7 @@ const EmployerPledge = ({show, checked, changeHandler, eventHandler, showAlert, 
       </div>
       {showAlert &&
         <Alert
-          message="You must agree to the Pledge and the Terms of Service"
+          message={alertMessage}
           closeAlert={closeAlert}
         />
       }

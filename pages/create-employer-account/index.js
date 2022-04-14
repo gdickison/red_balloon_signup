@@ -5,11 +5,12 @@ import { useState } from 'react'
 import { useRouter } from 'next/router'
 
 export default function Home() {
-  const [newUser, setNewUser] = useState({email: null, password: null})
+  const [newUser, setNewUser] = useState({email: "", password: ""})
   const [showCreateEmployerAccount, setShowCreateEmployerAccount] = useState(true)
   const [showFlyingEagle, setShowFlyingEagle] = useState(false)
   const [showEmployerPledge, setShowEmployerPledge] = useState(false)
   const [showAlert, setShowAlert] = useState(false)
+  const [alertMessage, setAlertMessage] = useState()
   const router = useRouter()
 
   const handleChange = e => {
@@ -22,8 +23,17 @@ export default function Home() {
     e.preventDefault()
     if(!newUser.email || !newUser.password){
       setShowAlert(true)
+      setAlertMessage("An email address and password are required")
       return
     }
+
+    const emailFormat = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+    if(!newUser.email.match(emailFormat)){
+      setShowAlert(true)
+      setAlertMessage("A valid email address is required")
+      return
+    }
+
     localStorage.setItem("email", newUser.email)
     localStorage.setItem("password", newUser.password)
     const JSONdata = JSON.stringify(newUser)
@@ -54,12 +64,14 @@ export default function Home() {
 
   const closeAlert = () => {
     setShowAlert(false)
+    setAlertMessage()
   }
 
   const [checked, setChecked] = useState(false)
 
   const handleChecked = () => {
     setShowAlert(false)
+    setAlertMessage()
     setChecked(!checked)
   }
 
@@ -67,6 +79,7 @@ export default function Home() {
     e.preventDefault()
     if(!checked){
       setShowAlert(true)
+      setAlertMessage("You must agree to the Pledge and the Terms of Service")
       return
     }
     const JSONdata = JSON.stringify(pledge.textContent)
@@ -92,6 +105,7 @@ export default function Home() {
         eventHandler={handleCreateAccount}
         changeHandler={handleChange}
         showAlert={showAlert}
+        alertMessage={alertMessage}
         closeAlert={closeAlert}
       />
       <FlyingEagle
@@ -103,6 +117,7 @@ export default function Home() {
         checked={checked}
         eventHandler={handlePledge}
         showAlert={showAlert}
+        alertMessage={alertMessage}
         closeAlert={closeAlert}
       />
     </div>

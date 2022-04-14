@@ -8,7 +8,7 @@ import Copyright from "../../assets/Copyright"
 import Head from "next/head"
 import Alert from "../../assets/Alert"
 
-const CreateEmployerAccount = ({show, changeHandler, eventHandler, showAlert, closeAlert}) => {
+const CreateEmployerAccount = ({show, changeHandler, eventHandler, showAlert, alertMessage, closeAlert}) => {
   return (
     <>
       <Head>
@@ -51,7 +51,7 @@ const CreateEmployerAccount = ({show, changeHandler, eventHandler, showAlert, cl
         </div>
         {showAlert &&
           <Alert
-            message="An email address and password are required"
+            message={alertMessage}
             closeAlert={closeAlert}
           />
         }
