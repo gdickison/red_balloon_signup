@@ -12,17 +12,17 @@ import { useRouter } from "next/router"
 const NewEmployerAccountDetail = () => {
   const router = useRouter()
   const [newEmployerDetail, setNewEmployerDetail] = useState({
-    firstName: null,
-    lastName: null,
-    businessName: null,
-    website: null,
-    phone: null,
-    address: null,
-    city: null,
-    region: null,
-    postalCode: null,
-    why: null,
-    source: null
+    firstName: "",
+    lastName: "",
+    businessName: "",
+    website: "",
+    phone: "",
+    address: "",
+    city: "",
+    region: "",
+    postalCode: "",
+    why: "",
+    source: ""
   })
   const [showAlert, setShowAlert] = useState(false)
   const [alertMessage, setAlertMessage] = useState("")
@@ -31,7 +31,9 @@ const NewEmployerAccountDetail = () => {
     e.preventDefault()
     setShowAlert(false)
     setNewEmployerDetail({...newEmployerDetail, [e.target.name]: e.target.value})
-    console.log(newEmployerDetail)
+    if(e.target.name === 'region'){
+      document.getElementById('region').classList.add('text-black');
+    }
   }
 
   const phoneNumberFormatter = () => {
@@ -55,9 +57,9 @@ const NewEmployerAccountDetail = () => {
   const eventHandler = async e => {
     e.preventDefault()
     for(const item in newEmployerDetail){
-      if(newEmployerDetail[item] === null || (newEmployerDetail.phone !== null && (newEmployerDetail.phone.length < 12 || newEmployerDetail.phone.length > 12))){
+      if(!newEmployerDetail[item] || (newEmployerDetail.phone && (newEmployerDetail.phone.length < 12 || newEmployerDetail.phone.length > 12))){
         setShowAlert(true)
-        const alertText = newEmployerDetail[item] === null ? "All fields are required" : (newEmployerDetail.phone.length < 12 || newEmployerDetail.phone.length > 12) ? "Phone number must be 10 digits" : ""
+        const alertText = !newEmployerDetail[item] ? "All fields are required" : (newEmployerDetail.phone.length < 12 || newEmployerDetail.phone.length > 12) ? "Phone number must be 10 digits" : ""
         setAlertMessage(alertText)
         return
       }
@@ -130,7 +132,73 @@ const NewEmployerAccountDetail = () => {
             <input id="address" className={`h-11 text-lg px-6 w-full rounded-full ${showAlert && !newEmployerDetail.address ? 'border-4 border-rbBlue' : showAlert ? 'border-0 opacity-60' : 'border-0'}`} type="text" name="address" placeholder="Business Address" onChange={changeHandler}/>
             <input id="city" className={`h-11 text-lg px-6 w-full rounded-full ${showAlert && !newEmployerDetail.city ? 'border-4 border-rbBlue' : showAlert ? 'border-0 opacity-60' : 'border-0'}`} type="text" name="city" placeholder="City" onChange={changeHandler}/>
             <div className="flex w-full justify-between">
-              <input id="region" className={`h-11 text-lg px-6 w-[48%] rounded-full ${showAlert && !newEmployerDetail.region ? 'border-4 border-rbBlue' : showAlert ? 'border-0 opacity-60' : 'border-0'}`} type="text" name="region" placeholder="State/Province" onChange={changeHandler}/>
+              <select id="region" className={`text-gray-400 h-11 text-lg px-6 w-[48%] rounded-full bg-rbWhite ${showAlert && !newEmployerDetail.region ? 'border-4 border-rbBlue' : showAlert ? 'border-0 opacity-60' : 'border-0'}`} name="region" placeholder="State/Province" defaultValue={null} onChange={changeHandler}>
+                <option value={null} hidden>State/Province</option>
+                <option value="AL">Alabama</option>
+                <option value="AK">Alaska</option>
+                <option value="AZ">Arizona</option>
+                <option value="AR">Arkansas</option>
+                <option value="CA">California</option>
+                <option value="CO">Colorado</option>
+                <option value="CT">Connecticut</option>
+                <option value="DE">Delaware</option>
+                <option value="DC">District Of Columbia</option>
+                <option value="FL">Florida</option>
+                <option value="GA">Georgia</option>
+                <option value="HI">Hawaii</option>
+                <option value="ID">Idaho</option>
+                <option value="IL">Illinois</option>
+                <option value="IN">Indiana</option>
+                <option value="IA">Iowa</option>
+                <option value="KS">Kansas</option>
+                <option value="KY">Kentucky</option>
+                <option value="LA">Louisiana</option>
+                <option value="ME">Maine</option>
+                <option value="MD">Maryland</option>
+                <option value="MA">Massachusetts</option>
+                <option value="MI">Michigan</option>
+                <option value="MN">Minnesota</option>
+                <option value="MS">Mississippi</option>
+                <option value="MO">Missouri</option>
+                <option value="MT">Montana</option>
+                <option value="NE">Nebraska</option>
+                <option value="NV">Nevada</option>
+                <option value="NH">New Hampshire</option>
+                <option value="NJ">New Jersey</option>
+                <option value="NM">New Mexico</option>
+                <option value="NY">New York</option>
+                <option value="NC">North Carolina</option>
+                <option value="ND">North Dakota</option>
+                <option value="OH">Ohio</option>
+                <option value="OK">Oklahoma</option>
+                <option value="OR">Oregon</option>
+                <option value="PA">Pennsylvania</option>
+                <option value="RI">Rhode Island</option>
+                <option value="SC">South Carolina</option>
+                <option value="SD">South Dakota</option>
+                <option value="TN">Tennessee</option>
+                <option value="TX">Texas</option>
+                <option value="UT">Utah</option>
+                <option value="VT">Vermont</option>
+                <option value="VA">Virginia</option>
+                <option value="WA">Washington</option>
+                <option value="WV">West Virginia</option>
+                <option value="WI">Wisconsin</option>
+                <option value="WY">Wyoming</option>
+                <option value="AB">Alberta</option>
+                <option value="BC">British Columbia</option>
+                <option value="MB">Manitoba</option>
+                <option value="NB">New Brunswick</option>
+                <option value="NL">Newfoundland and Labrador</option>
+                <option value="NS">Nova Scotia</option>
+                <option value="ON">Ontario</option>
+                <option value="PE">Prince Edward Island</option>
+                <option value="QC">Quebec</option>
+                <option value="SK">Saskatchewan</option>
+                <option value="NT">Northwest Territories</option>
+                <option value="NU">Nunavut</option>
+                <option value="YT">Yukon</option>
+              </select>
               <input id="postal-code" className={`h-11 text-lg px-6 w-[48%] rounded-full ${showAlert && !newEmployerDetail.postalCode ? 'border-4 border-rbBlue' : showAlert ? 'border-0 opacity-60' : 'border-0'}`} type="text" name="postalCode" placeholder="Zip/Postal Code" onChange={changeHandler}/>
             </div>
             <input id="why" className={`h-11 text-lg px-6 w-full rounded-full ${showAlert && !newEmployerDetail.why ? 'border-4 border-rbBlue' : showAlert ? 'border-0 opacity-60' : 'border-0'}`} type="text" name="why" placeholder="Why do you want to join RedBalloon?" onChange={changeHandler}/>
