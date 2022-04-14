@@ -31,8 +31,9 @@ const NewEmployerAccountDetail = () => {
     e.preventDefault()
     setShowAlert(false)
     setNewEmployerDetail({...newEmployerDetail, [e.target.name]: e.target.value})
+
     if(e.target.name === 'region'){
-      document.getElementById('region').classList.add('text-black');
+      document.getElementById('region').classList.remove('text-gray-400');
     }
   }
 
