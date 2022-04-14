@@ -19,6 +19,11 @@ export default function Home() {
     setNewUser({...newUser, [e.target.name]: e.target.value})
   }
 
+  const {createHash} = require('crypto')
+  const hashPassword = (password) => {
+    return createHash('sha256')
+  }
+
   const handleCreateAccount = async e => {
     e.preventDefault()
     if(!newUser.email || !newUser.password){
@@ -43,6 +48,10 @@ export default function Home() {
 
     localStorage.setItem("email", newUser.email)
     localStorage.setItem("password", newUser.password)
+
+    const hashedPassword = hashPassword(newUser.password)
+    setNewUser(newUser.password = hashedPassword)
+
     const JSONdata = JSON.stringify(newUser)
     const endpoint = '/api/create-account'
 
@@ -56,17 +65,17 @@ export default function Home() {
 
     const response = await fetch(endpoint, options)
 
-    const result = await response.json()
+    if(response.status === 200){
+      document.getElementById("create-employer-account").classList.add("fade-out")
 
-    document.getElementById("create-employer-account").classList.add("fade-out")
-
-    setShowFlyingEagle(true)
-    setTimeout(() => {
-      setShowCreateEmployerAccount(false)
-    }, 1900)
-    setTimeout(() => {
-      setShowEmployerPledge(true)
-    },1800)
+      setShowFlyingEagle(true)
+      setTimeout(() => {
+        setShowCreateEmployerAccount(false)
+      }, 1900)
+      setTimeout(() => {
+        setShowEmployerPledge(true)
+      },1800)
+    }
   }
 
   const closeAlert = () => {
@@ -100,9 +109,10 @@ export default function Home() {
       body: JSONdata,
     }
     const response = await fetch(endpoint, options)
-    const result = await response.json()
 
-    router.push('/new-employer-account-detail')
+    if(response.status === 200){
+      router.push('/new-employer-account-detail')
+    }
   }
 
   return (
