@@ -34,10 +34,10 @@ export default function Home() {
       return
     }
 
-    const passwordFormat = /^(?=.*\d)(?=.*[A-Za-z]).{8,20}$/;
+    const passwordFormat = /^(?=.*\d)(?=.*[A-Za-z]).{8,100}$/;
     if(!newUser.password.match(passwordFormat)){
       setShowAlert(true)
-      setAlertMessage("Password must be 8-20 characters and include at least 1 number")
+      setAlertMessage("Password must be at least 8 characters and include at least 1 number")
       return
     }
 
