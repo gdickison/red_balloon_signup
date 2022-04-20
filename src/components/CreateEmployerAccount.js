@@ -1,12 +1,12 @@
 /* eslint-disable @next/next/no-img-element */
-import ButtonWithArrow from "../../assets/ButtonWithArrow"
-import EmployerOnboardHeader from "../EmployerOnboardHeader/index"
-import SectionWrapper from "../SectionWrapper/index"
-import HeroQuote from "../../assets/HeroQoute"
-import HeroWho from "../../assets/HeroWho"
-import Copyright from "../../assets/Copyright"
+import ButtonWithArrow from "../assets/ButtonWithArrow"
+import EmployerOnboardHeader from "../components/EmployerOnboardHeader"
+import SectionWrapper from "../components/SectionWrapper"
+import HeroQuote from "../assets/HeroQoute"
+import HeroWho from "../assets/HeroWho"
+import Copyright from "../assets/Copyright"
 import Head from "next/head"
-import Alert from "../../assets/Alert"
+import Alert from "../assets/Alert"
 
 const CreateEmployerAccount = ({show, changeHandler, eventHandler, showAlert, alertMessage, closeAlert}) => {
   return (
@@ -37,7 +37,7 @@ const CreateEmployerAccount = ({show, changeHandler, eventHandler, showAlert, al
             <img className="absolute -top-6 w-96 drop-shadow-[0_0.5rem_0.5rem_rgba(0,0,0,0.50)]" src="/images/job-seeker.png" alt="Red Balloon American Hero" />
             <div className="hero-quote-wrapper absolute bottom-[13.5rem] flex z-10">
               <HeroQuote
-                quote="&quot;Employers love that I&apos;m a motivated self-starter!&quot;"
+                quote="&quot;I focus on blessing my clients with excellent work done quickly.&quot;"
               />
             </div>
             <div className="hero-who bg-rbRed w-72 h-[4.9rem] absolute bottom-36 text-rbWhite font-light italic">

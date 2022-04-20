@@ -1,0 +1,292 @@
+openapi: 3.0.1
+info:
+    title: RedBalloon Site API
+    description: >-
+        This is the definition for the RedBalloon site's API. It takes care of all internal DB
+        and exteral API communication and attempts to offer a clean, easy to call interface.
+    contact:
+        email: jonathan@redballoon.work
+    license:
+        name: Internal
+    version: 0.1.0
+externalDocs:
+    description: Find out more about OpenAPI
+    url: http://swagger.io
+servers:
+    - url: https://api.register.redballoon.work/
+    - url: http://localhost:8139/
+paths:
+    /healthcheck:
+        get:
+            summary: Report on health of the API
+            operationId: healthcheck
+            responses:
+                '200':
+                    description: All healthy and ready to work
+                    content:
+                        application/json:
+                            schema:
+                                type: string
+
+    /employer:
+        get:
+            tags:
+                - employers
+            summary: Check for employer by email address
+            operationId: checkEmployer
+            parameters:
+                - name: email
+                  description: Email address
+                  in: query
+                  required: true
+                  schema:
+                      type: string
+            responses:
+                '200':
+                    description: Employer found
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/CheckResult'
+                '404':
+                    description: Employer not found
+        post:
+            tags:
+                - employers
+            summary: Initialize employer or get ID
+            operationId: initEmployer
+            requestBody:
+                required: true
+                content:
+                    application/json:
+                        schema:
+                            $ref: '#/components/schemas/InitEmployer'
+            responses:
+                '200':
+                    description: Employer found
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/EmployerID'
+                '201':
+                    description: Employer created
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/EmployerID'
+                '404':
+                    description: Employer not found
+
+    /employer/{employer_id}:
+        get:
+            tags:
+                - employers
+            summary: Get employer detail info
+            operationId: getEmployer
+            parameters:
+                - name: employer_id
+                  description: RB employer ID
+                  in: path
+                  required: true
+                  schema:
+                      type: string
+            responses:
+                '200':
+                    description: Employer updated
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/EmployerDetails'
+                '404':
+                    description: Employer not found
+
+        patch:
+            tags:
+                - employers
+            summary: Upsert employer's detail info
+            operationId: upsertEmployerDetail
+            parameters:
+                - name: employer_id
+                  description: RB employer ID
+                  in: path
+                  required: true
+                  schema:
+                      type: string
+            requestBody:
+                required: true
+                description: Employer object to be inserted or updated/merged.
+                content:
+                    application/json:
+                        schema:
+                            $ref: '#/components/schemas/EmployerDetails'
+            responses:
+                '200':
+                    description: Employer updated
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/EmployerID'
+                '404':
+                    description: Employer not found, therefore can't update.
+
+        delete:
+            tags:
+                - employers
+            summary: Delete employer from RB and JBHQ
+            operationId: deleteEmployer
+            parameters:
+                - name: employer_id
+                  description: RB employer ID
+                  in: path
+                  required: true
+                  schema:
+                      type: string
+            responses:
+                '200':
+                    description: Employer deleted
+                    content:
+                        application/json:
+                            schema:
+                                type: string
+                '404':
+                    description: Employer not found, therefore can't delete.
+
+    /employer/{employer_id}/save:
+        post:
+            tags:
+                - employers
+            summary: Save employer to JBHQ and enable their account
+            operationId: saveEmployer
+            requestBody:
+                required: true
+                content:
+                    application/json:
+                        schema:
+                            $ref: '#/components/schemas/InitEmployer'
+            parameters:
+                - name: employer_id
+                  description: RB employer ID
+                  in: path
+                  required: true
+                  schema:
+                      type: string
+            responses:
+                '200':
+                    description: Employer has been enabled and added to JBHQ
+                    content:
+                        application/json:
+                            schema:
+                                type: string
+                '404':
+                    description: Employer was not found
+
+    /employer/{employer_id}/disable:
+        put:
+            tags:
+                - employers
+            summary: Disable specified employer
+            operationId: disableEmployer
+            parameters:
+                - name: employer_id
+                  description: RB employer ID
+                  in: path
+                  required: true
+                  schema:
+                      type: string
+            responses:
+                '200':
+                    description: Employer has been disabled
+                    content:
+                        application/json:
+                            schema:
+                                type: string
+                '404':
+                    description: Employer was not found
+
+components:
+    schemas:
+        CheckResult:
+            type: object
+            properties:
+                email_found:
+                    type: boolean
+                detail_found:
+                    type: boolean
+
+            required:
+                - email_found
+                - detail_found
+
+        InitEmployer:
+            type: object
+            properties:
+                email:
+                    type: string
+                password:
+                    type: string
+                terms_accepted:
+                    type: boolean
+
+            required:
+                - email
+                - password
+                - terms_accepted
+
+        EmployerDetails:
+            type: object
+            properties:
+                first_name:
+                    type: string
+                last_name:
+                    type: string
+                business_name:
+                    type: string
+                website:
+                    type: string
+                country_code:
+                    type: string
+                    description: 2 character country_code
+                    example: US or CA
+                address1:
+                    type: string
+                address2:
+                    type: string
+                phone:
+                    type: string
+                    description: Format is a 10 digit code
+                city:
+                    type: string
+                region:
+                    type: string
+                    description: 2 character state/province code
+                postal_code:
+                    type: string
+                why_join:
+                    type: string
+                    description: Why do you want to join RedBalloon?
+                awareness:
+                    type: string
+                    description: How did you hear about RedBalloon?
+
+            required:
+                - first_name
+                - last_name
+                - business_name
+                - website
+                - country_code
+                - address1
+                - phone
+                - city
+                - region
+                - postal_code
+                - why_join
+                - awareness
+
+        EmployerID:
+            type: object
+            properties:
+                id:
+                    type: string
+                    description: Unique RB ID of the employer
+            required:
+                - id

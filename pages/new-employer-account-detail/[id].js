@@ -1,29 +1,41 @@
+// import NewEmployerAccountDetail from "../../src/components/NewEmployerAccountDetail";
+
+// const Index = () => {
+//   return (
+//     <NewEmployerAccountDetail/>
+//   )
+// }
+
+// export default Index
+
 /* eslint-disable @next/next/no-img-element */
-import SectionWrapper from "../SectionWrapper"
-import EmployerOnboardHeader from "../EmployerOnboardHeader"
-import ButtonWithArrow from "../../assets/ButtonWithArrow"
-import HeroQuote from "../../assets/HeroQoute"
-import Copyright from "../../assets/Copyright"
+import SectionWrapper from "../../src/components/SectionWrapper"
+import EmployerOnboardHeader from "../../src/components/EmployerOnboardHeader"
+import ButtonWithArrow from "../../src/assets/ButtonWithArrow"
+import HeroQuote from "../../src/assets/HeroQoute"
+import Copyright from "../../src/assets/Copyright"
 import Head from "next/head"
-import Alert from "../../assets/Alert"
+import Alert from "../../src/assets/Alert"
 import { useState } from 'react'
 import { useRouter } from "next/router"
 
 const NewEmployerAccountDetail = () => {
   const router = useRouter()
+
   const [newEmployerDetail, setNewEmployerDetail] = useState({
     firstName: "",
     lastName: "",
     businessName: "",
     website: "",
     phone: "",
-    address: "",
+    address1: "",
+    address2: "",
     city: "",
     region: "",
     countryCode: "",
     postalCode: "",
-    why: "",
-    source: ""
+    whyJoin: "",
+    awareness: ""
   })
   const [showAlert, setShowAlert] = useState(false)
   const [alertMessage, setAlertMessage] = useState("")
@@ -67,15 +79,16 @@ const NewEmployerAccountDetail = () => {
   const eventHandler = async e => {
     e.preventDefault()
     for(const item in newEmployerDetail){
-      if(!newEmployerDetail[item] || (newEmployerDetail.phone && (newEmployerDetail.phone.length < 12 || newEmployerDetail.phone.length > 12))){
+      if((!newEmployerDetail[item] && item !== 'address2') || (newEmployerDetail.phone && (newEmployerDetail.phone.length < 12 || newEmployerDetail.phone.length > 12))){
         setShowAlert(true)
-        const alertText = !newEmployerDetail[item] ? "All fields are required" : (newEmployerDetail.phone.length < 12 || newEmployerDetail.phone.length > 12) ? "Phone number must be 10 digits" : ""
+        const alertText = !newEmployerDetail[item] ? "Highlighted fields are required" : (newEmployerDetail.phone.length < 12 || newEmployerDetail.phone.length > 12) ? "Phone number must be 10 digits" : ""
         setAlertMessage(alertText)
         return
       }
     }
     const JSONdata = JSON.stringify(newEmployerDetail)
-    const endpoint = '/api/employer-details'
+    // const endpoint = '/api/employer-details'
+    const endpoint = `/api/employer-details/${router.query.id}`
 
     const options = {
       method: 'POST',
@@ -86,8 +99,12 @@ const NewEmployerAccountDetail = () => {
     }
 
     const response = await fetch(endpoint, options)
+    const parsedResponse = await response.json()
+    console.log(parsedResponse)
+
 
     if(response.status === 200){
+      console.log(response.status)
       router.push('/new-employer-signup')
     }
   }
@@ -137,7 +154,8 @@ const NewEmployerAccountDetail = () => {
             <input id="business-name" className={`h-11 text-lg px-6 w-full rounded-full ${showAlert && !newEmployerDetail.businessName ? 'border-4 border-rbBlue' : showAlert ? 'border-0 opacity-60' : 'border-0'}`} type="text" name="businessName" placeholder="Business Name" onChange={changeHandler}/>
             <input id="website" className={`h-11 text-lg px-6 w-full rounded-full ${showAlert && !newEmployerDetail.website ? 'border-4 border-rbBlue' : showAlert ? 'border-0 opacity-60' : 'border-0'}`} type="url" name="website" placeholder="Website" onChange={changeHandler}/>
             <input id="phone" className={`h-11 text-lg px-6 w-full rounded-full ${showAlert && (!newEmployerDetail.phone || newEmployerDetail.phone.length < 12 || newEmployerDetail.phone.length > 12) ? 'border-4 border-rbBlue' : showAlert ? 'border-0 opacity-60' : 'border-0'}`} type="tel" name="phone" placeholder="Phone 555-555-1212" onKeyDown={phoneNumberFormatter} onChange={changeHandler}/>
-            <input id="address" className={`h-11 text-lg px-6 w-full rounded-full ${showAlert && !newEmployerDetail.address ? 'border-4 border-rbBlue' : showAlert ? 'border-0 opacity-60' : 'border-0'}`} type="text" name="address" placeholder="Business Address" onChange={changeHandler}/>
+            <input id="address1" className={`h-11 text-lg px-6 w-full rounded-full ${showAlert && !newEmployerDetail.address1 ? 'border-4 border-rbBlue' : showAlert ? 'border-0 opacity-60' : 'border-0'}`} type="text" name="address1" placeholder="Business Address Line 1" onChange={changeHandler}/>
+            <input id="address2" className={`h-11 text-lg px-6 w-full rounded-full border-0`} type="text" name="address2" placeholder="Business Address Line 2" onChange={changeHandler}/>
             <input id="city" className={`h-11 text-lg px-6 w-full rounded-full ${showAlert && !newEmployerDetail.city ? 'border-4 border-rbBlue' : showAlert ? 'border-0 opacity-60' : 'border-0'}`} type="text" name="city" placeholder="City" onChange={changeHandler}/>
             <div className="flex w-full justify-between">
               <select id="region" className={`text-gray-400 h-11 text-lg px-6 w-[48%] rounded-full bg-rbWhite ${showAlert && !newEmployerDetail.region ? 'border-4 border-rbBlue' : showAlert ? 'border-0 opacity-60' : 'border-0'}`} name="region" placeholder="State/Province" defaultValue={null} onChange={changeHandler}>
@@ -209,8 +227,8 @@ const NewEmployerAccountDetail = () => {
               </select>
               <input id="postal-code" className={`h-11 text-lg px-6 w-[48%] rounded-full ${showAlert && !newEmployerDetail.postalCode ? 'border-4 border-rbBlue' : showAlert ? 'border-0 opacity-60' : 'border-0'}`} type="text" name="postalCode" placeholder="Zip/Postal Code" onChange={changeHandler}/>
             </div>
-            <input id="why" className={`h-11 text-lg px-6 w-full rounded-full ${showAlert && !newEmployerDetail.why ? 'border-4 border-rbBlue' : showAlert ? 'border-0 opacity-60' : 'border-0'}`} type="text" name="why" placeholder="Why do you want to join RedBalloon?" onChange={changeHandler}/>
-            <input id="source" className={`h-11 text-lg px-6 w-full rounded-full ${showAlert && !newEmployerDetail.source ? 'border-4 border-rbBlue' : showAlert ? 'border-0 opacity-60' : 'border-0'}`} type="text" name="source" placeholder="How did you hear about us?" onChange={changeHandler}/>
+            <input id="whyJoin" className={`h-11 text-lg px-6 w-full rounded-full ${showAlert && !newEmployerDetail.whyJoin ? 'border-4 border-rbBlue' : showAlert ? 'border-0 opacity-60' : 'border-0'}`} type="text" name="whyJoin" placeholder="Why do you want to join RedBalloon?" onChange={changeHandler}/>
+            <input id="awareness" className={`h-11 text-lg px-6 w-full rounded-full ${showAlert && !newEmployerDetail.awareness ? 'border-4 border-rbBlue' : showAlert ? 'border-0 opacity-60' : 'border-0'}`} type="text" name="awareness" placeholder="How did you hear about us?" onChange={changeHandler}/>
             <ButtonWithArrow
               buttonText="CONTINUE"
               eventHandler={eventHandler}

@@ -19,11 +19,6 @@ export default function Home() {
     setNewUser({...newUser, [e.target.name]: e.target.value})
   }
 
-  const {createHash} = require('crypto')
-  const hashPassword = (password) => {
-    return createHash('sha256')
-  }
-
   const handleCreateAccount = async e => {
     e.preventDefault()
     if(!newUser.email || !newUser.password){
@@ -49,9 +44,6 @@ export default function Home() {
     localStorage.setItem("email", newUser.email)
     localStorage.setItem("password", newUser.password)
 
-    const hashedPassword = hashPassword(newUser.password)
-    setNewUser(newUser.password = hashedPassword)
-
     const JSONdata = JSON.stringify(newUser)
     const endpoint = '/api/create-account'
 
@@ -63,9 +55,21 @@ export default function Home() {
       body: JSONdata,
     }
 
-    const response = await fetch(endpoint, options)
+    let response = await fetch(endpoint, options)
+    console.log(response)
+    let status = response.status
+    let userStatus = await response.json()
 
-    if(response.status === 200){
+    console.log('status', status)
+    console.log('email', userStatus.email_found)
+    console.log('detail', userStatus.detail_found)
+
+    if(status === 200 && userStatus.email_found && userStatus.detail_found){
+      setShowAlert(true)
+      setAlertMessage(["There is already an account attached to that email address. Click ", <a className='underline' key="login" href="https://www.redballoon.work/login">here</a>, " to go to the login page."])
+    } else if (status === 200 && userStatus.email_found && !userStatus.detail_found){
+      router.push(`/new-employer-account-detail/${userStatus.employer_id}`)
+    } else if (status === 200){
       document.getElementById("create-employer-account").classList.add("fade-out")
 
       setShowFlyingEagle(true)
@@ -98,7 +102,13 @@ export default function Home() {
       setAlertMessage("You must agree to the Pledge and the Terms of Service")
       return
     }
-    const JSONdata = JSON.stringify(pledge.textContent)
+
+    const newUserData = {
+      terms_accepted: checked,
+      ...newUser
+    }
+    const JSONdata = JSON.stringify(newUserData)
+    console.log(JSONdata)
     const endpoint = '/api/employer-pledge'
 
     const options = {
@@ -111,7 +121,10 @@ export default function Home() {
     const response = await fetch(endpoint, options)
 
     if(response.status === 200){
-      router.push('/new-employer-account-detail')
+      console.log(router)
+      const getNewEmpolyerId = await response.json()
+      const newEmployerId = getNewEmpolyerId.id
+      router.push(`/new-employer-account-detail/${newEmployerId}`)
     }
   }
 

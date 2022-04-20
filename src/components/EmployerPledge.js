@@ -1,9 +1,9 @@
 /* eslint-disable @next/next/no-img-element */
-import SectionWrapper from "../SectionWrapper/index"
-import EmployerOnboardHeader from "../EmployerOnboardHeader/index"
-import ButtonNoArrow from "../../assets/ButtonNoArrow"
-import Copyright from "../../assets/Copyright"
-import Alert from "../../assets/Alert"
+import SectionWrapper from "../components/SectionWrapper"
+import EmployerOnboardHeader from "../components/EmployerOnboardHeader"
+import ButtonNoArrow from "../assets/ButtonNoArrow"
+import Copyright from "../assets/Copyright"
+import Alert from "../assets/Alert"
 
 const EmployerPledge = ({show, checked, changeHandler, eventHandler, showAlert, alertMessage, closeAlert}) => {
   return (
