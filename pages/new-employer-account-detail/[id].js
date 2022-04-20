@@ -35,7 +35,9 @@ const NewEmployerAccountDetail = () => {
     countryCode: "",
     postalCode: "",
     whyJoin: "",
-    awareness: ""
+    awareness: "",
+    email: localStorage.getItem("email"),
+    password: localStorage.getItem("password")
   })
   const [showAlert, setShowAlert] = useState(false)
   const [alertMessage, setAlertMessage] = useState("")
@@ -76,6 +78,30 @@ const NewEmployerAccountDetail = () => {
     return `${phoneNumber.slice(0,3)}-${phoneNumber.slice(3,6)}-${phoneNumber.slice(6,9)}`;
   }
 
+  const saveToJbhq = async () => {
+    const JSONdata = JSON.stringify(newEmployerDetail)
+    const endpoint = `/api/save-to-jbhq/${router.query.id}`
+
+    const options = {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSONdata
+    }
+
+    const response = await fetch(endpoint, options)
+    const parsedResponse = await response.json()
+    console.log(parsedResponse)
+
+
+    if(response.status === 200){
+      console.log(response.status)
+      router.push('/new-employer-signup')
+    }
+
+  }
+
   const eventHandler = async e => {
     e.preventDefault()
     for(const item in newEmployerDetail){
@@ -87,7 +113,6 @@ const NewEmployerAccountDetail = () => {
       }
     }
     const JSONdata = JSON.stringify(newEmployerDetail)
-    // const endpoint = '/api/employer-details'
     const endpoint = `/api/employer-details/${router.query.id}`
 
     const options = {
@@ -105,7 +130,8 @@ const NewEmployerAccountDetail = () => {
 
     if(response.status === 200){
       console.log(response.status)
-      router.push('/new-employer-signup')
+      // router.push('/new-employer-signup')
+      saveToJbhq()
     }
   }
 
