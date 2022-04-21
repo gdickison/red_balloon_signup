@@ -37,7 +37,7 @@ const EmployerPledge = ({show, checked, changeHandler, eventHandler, showAlert, 
         </div>
         <div className={`flex items-center mt-5 mb-6 space-x-2 w-60 ${showAlert ? 'border-4' : 'border-0'}`}>
           <input className="h-8 w-24 text-base rounded-full" type="checkbox" checked={checked} onChange={changeHandler} onKeyDown={enterKeyHandler}/>
-          <p className="text-rbWhite text-base leading-5">I have read and agree to the <a className="underline lg:no-underline lg:hover:underline" href="https://www.redballoon.work/page/terms" target="_blank" rel="noreferrer">Terms of Service</a> and the Employer Pledge</p>
+          <p className="text-rbWhite text-base leading-5">I have read and agree to the <a className="underline" href="https://www.redballoon.work/page/terms" target="_blank" rel="noreferrer">Terms of Service</a> and the Employer Pledge</p>
         </div>
         <ButtonNoArrow buttonText="CONTINUE" eventHandler={eventHandler}/>
         <img className="h-28 mt-4 mb-12" src="/images/red-balloon-seal-of-approval.svg" alt="Red Balloon Seal Of Approval" />

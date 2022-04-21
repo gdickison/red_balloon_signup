@@ -27,7 +27,7 @@ export default function Home() {
       return
     }
 
-    const emailFormat = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+    const emailFormat = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,10})+$/;
     if(!newUser.email.match(emailFormat)){
       setShowAlert(true)
       setAlertMessage("A valid email address is required")
