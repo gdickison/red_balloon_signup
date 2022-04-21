@@ -9,6 +9,12 @@ import Head from "next/head"
 import Alert from "../assets/Alert"
 
 const CreateEmployerAccount = ({show, changeHandler, eventHandler, showAlert, alertMessage, closeAlert}) => {
+  const enterKeyHandler = e => {
+    if(e.code === "Enter"){
+      eventHandler(e)
+    }
+  }
+
   return (
     <>
       <Head>
@@ -24,7 +30,7 @@ const CreateEmployerAccount = ({show, changeHandler, eventHandler, showAlert, al
             />
             <div className={`flex flex-col items-center space-y-3 my-6 relative ${showAlert ? 'opacity-60' : 'opacity-100'}`}>
               <input id="email-input" className="h-11 text-lg px-6 w-80 rounded-full" type="email" name="email" placeholder="Your Email" onChange={changeHandler}/>
-              <input className="h-11 text-lg px-6 w-80 rounded-full" type="password" name="password" placeholder="Your Password" onChange={changeHandler}/>
+              <input className="h-11 text-lg px-6 w-80 rounded-full" type="password" name="password" placeholder="Your Password" onChange={changeHandler} onKeyDown={enterKeyHandler}/>
               <ButtonWithArrow
                 buttonText="Sign Up"
                 eventHandler={eventHandler}

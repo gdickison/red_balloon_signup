@@ -90,6 +90,12 @@ const NewEmployerAccountDetail = () => {
     }
   }
 
+  const enterKeyHandler = e => {
+    if(e.code === "Enter"){
+      eventHandler(e)
+    }
+  }
+
   const eventHandler = async e => {
     e.preventDefault()
     for(const item in newEmployerDetail){
@@ -240,7 +246,7 @@ const NewEmployerAccountDetail = () => {
               <input id="postal-code" className={`h-11 text-lg px-6 w-[48%] rounded-full ${showAlert && !newEmployerDetail.postalCode ? 'border-4 border-rbBlue' : showAlert ? 'border-0 opacity-60' : 'border-0'}`} type="text" name="postalCode" placeholder="Zip/Postal Code" onChange={changeHandler}/>
             </div>
             <input id="whyJoin" className={`h-11 text-lg px-6 w-full rounded-full ${showAlert && !newEmployerDetail.whyJoin ? 'border-4 border-rbBlue' : showAlert ? 'border-0 opacity-60' : 'border-0'}`} type="text" name="whyJoin" placeholder="Why do you want to join RedBalloon?" onChange={changeHandler}/>
-            <input id="awareness" className={`h-11 text-lg px-6 w-full rounded-full ${showAlert && !newEmployerDetail.awareness ? 'border-4 border-rbBlue' : showAlert ? 'border-0 opacity-60' : 'border-0'}`} type="text" name="awareness" placeholder="How did you hear about us?" onChange={changeHandler}/>
+            <input id="awareness" className={`h-11 text-lg px-6 w-full rounded-full ${showAlert && !newEmployerDetail.awareness ? 'border-4 border-rbBlue' : showAlert ? 'border-0 opacity-60' : 'border-0'}`} type="text" name="awareness" placeholder="How did you hear about us?" onChange={changeHandler} onKeyDown={enterKeyHandler}/>
             <ButtonWithArrow
               buttonText="CONTINUE"
               eventHandler={eventHandler}
