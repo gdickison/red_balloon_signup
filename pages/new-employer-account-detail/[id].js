@@ -1,13 +1,3 @@
-// import NewEmployerAccountDetail from "../../src/components/NewEmployerAccountDetail";
-
-// const Index = () => {
-//   return (
-//     <NewEmployerAccountDetail/>
-//   )
-// }
-
-// export default Index
-
 /* eslint-disable @next/next/no-img-element */
 import SectionWrapper from "../../src/components/SectionWrapper"
 import EmployerOnboardHeader from "../../src/components/EmployerOnboardHeader"
@@ -35,9 +25,7 @@ const NewEmployerAccountDetail = () => {
     countryCode: "",
     postalCode: "",
     whyJoin: "",
-    awareness: "",
-    email: localStorage.getItem("email"),
-    password: localStorage.getItem("password")
+    awareness: ""
   })
   const [showAlert, setShowAlert] = useState(false)
   const [alertMessage, setAlertMessage] = useState("")
@@ -79,7 +67,11 @@ const NewEmployerAccountDetail = () => {
   }
 
   const saveToJbhq = async () => {
-    const JSONdata = JSON.stringify(newEmployerDetail)
+    const JSONdata = JSON.stringify({
+      email: localStorage.getItem("email"),
+      password: localStorage.getItem("password")
+    })
+
     const endpoint = `/api/save-to-jbhq/${router.query.id}`
 
     const options = {
@@ -91,15 +83,11 @@ const NewEmployerAccountDetail = () => {
     }
 
     const response = await fetch(endpoint, options)
-    const parsedResponse = await response.json()
-    console.log(parsedResponse)
-
 
     if(response.status === 200){
       console.log(response.status)
       router.push('/new-employer-signup')
     }
-
   }
 
   const eventHandler = async e => {
@@ -129,8 +117,6 @@ const NewEmployerAccountDetail = () => {
 
 
     if(response.status === 200){
-      console.log(response.status)
-      // router.push('/new-employer-signup')
       saveToJbhq()
     }
   }
