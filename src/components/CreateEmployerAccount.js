@@ -29,7 +29,7 @@ const CreateEmployerAccount = ({show, changeHandler, eventHandler, showAlert, al
               stepText={["STEP 1/5 - Already have an account? ", <a key={Math.random()} className="underline" href="https://www.redballoon.work/login">Log in</a>]}
             />
             <div className={`flex flex-col items-center space-y-3 my-6 relative ${showAlert ? 'opacity-60' : 'opacity-100'}`}>
-              <input id="email-input" className="h-11 text-lg px-6 w-80 rounded-full" type="email" name="email" placeholder="Your Email" onChange={changeHandler}/>
+              <input id="email-input" className="h-11 text-lg px-6 w-80 rounded-full" type="email" name="email" placeholder="Your Email" onChange={changeHandler} onKeyDown={enterKeyHandler}/>
               <input className="h-11 text-lg px-6 w-80 rounded-full" type="password" name="password" placeholder="Your Password" onChange={changeHandler} onKeyDown={enterKeyHandler}/>
               <ButtonWithArrow
                 buttonText="Sign Up"

@@ -49,6 +49,10 @@ const NewEmployerAccountDetail = () => {
     if(e.key === 'Tab'){
       return
     }
+    if(e.key === 'Enter') {
+      eventHandler(e)
+      return
+    }
     const inputField = document.getElementById("phone")
     const formattedInputValue = formatPhoneNumber(inputField.value)
     inputField.value = formattedInputValue
@@ -167,16 +171,16 @@ const NewEmployerAccountDetail = () => {
             </div>
           </div>
           <div id="inputs" className="absolute top-[65%] flex flex-col items-center space-y-3 mt-4 w-5/6 max-w-screen-sm">
-            <input id="first-name" className={`h-11 text-lg px-6 w-full rounded-full ${showAlert && !newEmployerDetail.firstName ? 'border-4 border-rbBlue' : showAlert ? 'border-0 opacity-60' : 'border-0'}`} type="text" name="firstName" placeholder="First Name" onChange={changeHandler}/>
-            <input id="last-name" className={`h-11 text-lg px-6 w-full rounded-full ${showAlert && !newEmployerDetail.lastName ? 'border-4 border-rbBlue' : showAlert ? 'border-0 opacity-60' : 'border-0'}`} type="text" name="lastName" placeholder="Last Name" onChange={changeHandler}/>
-            <input id="business-name" className={`h-11 text-lg px-6 w-full rounded-full ${showAlert && !newEmployerDetail.businessName ? 'border-4 border-rbBlue' : showAlert ? 'border-0 opacity-60' : 'border-0'}`} type="text" name="businessName" placeholder="Business Name" onChange={changeHandler}/>
-            <input id="website" className={`h-11 text-lg px-6 w-full rounded-full ${showAlert && !newEmployerDetail.website ? 'border-4 border-rbBlue' : showAlert ? 'border-0 opacity-60' : 'border-0'}`} type="url" name="website" placeholder="Website" onChange={changeHandler}/>
+            <input id="first-name" className={`h-11 text-lg px-6 w-full rounded-full ${showAlert && !newEmployerDetail.firstName ? 'border-4 border-rbBlue' : showAlert ? 'border-0 opacity-60' : 'border-0'}`} type="text" name="firstName" placeholder="First Name" onChange={changeHandler} onKeyDown={enterKeyHandler}/>
+            <input id="last-name" className={`h-11 text-lg px-6 w-full rounded-full ${showAlert && !newEmployerDetail.lastName ? 'border-4 border-rbBlue' : showAlert ? 'border-0 opacity-60' : 'border-0'}`} type="text" name="lastName" placeholder="Last Name" onChange={changeHandler} onKeyDown={enterKeyHandler}/>
+            <input id="business-name" className={`h-11 text-lg px-6 w-full rounded-full ${showAlert && !newEmployerDetail.businessName ? 'border-4 border-rbBlue' : showAlert ? 'border-0 opacity-60' : 'border-0'}`} type="text" name="businessName" placeholder="Business Name" onChange={changeHandler} onKeyDown={enterKeyHandler}/>
+            <input id="website" className={`h-11 text-lg px-6 w-full rounded-full ${showAlert && !newEmployerDetail.website ? 'border-4 border-rbBlue' : showAlert ? 'border-0 opacity-60' : 'border-0'}`} type="url" name="website" placeholder="Website" onChange={changeHandler} onKeyDown={enterKeyHandler}/>
             <input id="phone" className={`h-11 text-lg px-6 w-full rounded-full ${showAlert && (!newEmployerDetail.phone || newEmployerDetail.phone.length < 12 || newEmployerDetail.phone.length > 12) ? 'border-4 border-rbBlue' : showAlert ? 'border-0 opacity-60' : 'border-0'}`} type="tel" name="phone" placeholder="Phone 555-555-1212" onKeyDown={phoneNumberFormatter} onChange={changeHandler}/>
-            <input id="address1" className={`h-11 text-lg px-6 w-full rounded-full ${showAlert && !newEmployerDetail.address1 ? 'border-4 border-rbBlue' : showAlert ? 'border-0 opacity-60' : 'border-0'}`} type="text" name="address1" placeholder="Business Address Line 1" onChange={changeHandler}/>
-            <input id="address2" className={`h-11 text-lg px-6 w-full rounded-full ${showAlert ? 'border-0 opacity-60' : 'border-0'}`} type="text" name="address2" placeholder="Business Address Line 2" onChange={changeHandler}/>
-            <input id="city" className={`h-11 text-lg px-6 w-full rounded-full ${showAlert && !newEmployerDetail.city ? 'border-4 border-rbBlue' : showAlert ? 'border-0 opacity-60' : 'border-0'}`} type="text" name="city" placeholder="City" onChange={changeHandler}/>
+            <input id="address1" className={`h-11 text-lg px-6 w-full rounded-full ${showAlert && !newEmployerDetail.address1 ? 'border-4 border-rbBlue' : showAlert ? 'border-0 opacity-60' : 'border-0'}`} type="text" name="address1" placeholder="Business Address Line 1" onChange={changeHandler} onKeyDown={enterKeyHandler}/>
+            <input id="address2" className={`h-11 text-lg px-6 w-full rounded-full ${showAlert ? 'border-0 opacity-60' : 'border-0'}`} type="text" name="address2" placeholder="Business Address Line 2" onChange={changeHandler} onKeyDown={enterKeyHandler}/>
+            <input id="city" className={`h-11 text-lg px-6 w-full rounded-full ${showAlert && !newEmployerDetail.city ? 'border-4 border-rbBlue' : showAlert ? 'border-0 opacity-60' : 'border-0'}`} type="text" name="city" placeholder="City" onChange={changeHandler} onKeyDown={enterKeyHandler}/>
             <div className="flex w-full justify-between">
-              <select id="region" className={`text-gray-400 h-11 text-lg px-6 w-[48%] rounded-full bg-rbWhite ${showAlert && !newEmployerDetail.region ? 'border-4 border-rbBlue' : showAlert ? 'border-0 opacity-60' : 'border-0'}`} name="region" placeholder="State/Province" defaultValue={null} onChange={changeHandler}>
+              <select id="region" className={`text-gray-400 h-11 text-lg px-6 w-[48%] rounded-full bg-rbWhite ${showAlert && !newEmployerDetail.region ? 'border-4 border-rbBlue' : showAlert ? 'border-0 opacity-60' : 'border-0'}`} name="region" placeholder="State/Province" defaultValue={null} onChange={changeHandler} onKeyDown={enterKeyHandler}>
                 <option value={null} hidden>State/Province</option>
                 <option value="AL" data-country-code="US">Alabama</option>
                 <option value="AK" data-country-code="US">Alaska</option>
@@ -243,9 +247,9 @@ const NewEmployerAccountDetail = () => {
                 <option value="NU" data-country-code="CA">Nunavut</option>
                 <option value="YT" data-country-code="CA">Yukon</option>
               </select>
-              <input id="postal-code" className={`h-11 text-lg px-6 w-[48%] rounded-full ${showAlert && !newEmployerDetail.postalCode ? 'border-4 border-rbBlue' : showAlert ? 'border-0 opacity-60' : 'border-0'}`} type="text" name="postalCode" placeholder="Zip/Postal Code" onChange={changeHandler}/>
+              <input id="postal-code" className={`h-11 text-lg px-6 w-[48%] rounded-full ${showAlert && !newEmployerDetail.postalCode ? 'border-4 border-rbBlue' : showAlert ? 'border-0 opacity-60' : 'border-0'}`} type="text" name="postalCode" placeholder="Zip/Postal Code" onChange={changeHandler} onKeyDown={enterKeyHandler}/>
             </div>
-            <input id="whyJoin" className={`h-11 text-lg px-6 w-full rounded-full ${showAlert && !newEmployerDetail.whyJoin ? 'border-4 border-rbBlue' : showAlert ? 'border-0 opacity-60' : 'border-0'}`} type="text" name="whyJoin" placeholder="Why do you want to join RedBalloon?" onChange={changeHandler}/>
+            <input id="whyJoin" className={`h-11 text-lg px-6 w-full rounded-full ${showAlert && !newEmployerDetail.whyJoin ? 'border-4 border-rbBlue' : showAlert ? 'border-0 opacity-60' : 'border-0'}`} type="text" name="whyJoin" placeholder="Why do you want to join RedBalloon?" onChange={changeHandler} onKeyDown={enterKeyHandler}/>
             <input id="awareness" className={`h-11 text-lg px-6 w-full rounded-full ${showAlert && !newEmployerDetail.awareness ? 'border-4 border-rbBlue' : showAlert ? 'border-0 opacity-60' : 'border-0'}`} type="text" name="awareness" placeholder="How did you hear about us?" onChange={changeHandler} onKeyDown={enterKeyHandler}/>
             <ButtonWithArrow
               buttonText="CONTINUE"
