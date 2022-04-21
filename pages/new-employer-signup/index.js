@@ -5,6 +5,7 @@ const NewEmployerSignup = () => {
 
   const runLogin = () => {
     const t = {'action':'login','username': localStorage.getItem("email"), 'password': localStorage.getItem("password")};
+    document.getElementById('rb').onload = null;
     document.getElementById('rb').contentWindow.postMessage(t, 'https://www.redballoon.work/login/employer/purchase');
     localStorage.clear()
   }
