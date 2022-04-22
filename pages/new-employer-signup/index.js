@@ -12,22 +12,25 @@ const NewEmployerSignup = () => {
   }
 
   // For the parent frame to receive the message from the purchase complete page
-  window.addEventListener('message', (event) => {
-    if (event.origin !== 'https://www.redballoon.work')
-        return;
-    if (event.data == 'Purchase Done')
-    {
-        // Disable account
-        // Continue to next page
-    }
-    else if (event.data == 'On Purchase Page')
-    {
-        // Show iframe
-        document.getElementById('rb').style.display = 'block';
-    }
-    else
-        console.log(event);
-  });
+  if (typeof window !== undefined) {
+    window.addEventListener('message', (event) => {
+      if (event.origin !== 'https://www.redballoon.work')
+          return;
+      if (event.data == 'Purchase Done')
+      {
+          // Disable account
+          // Continue to next page
+      }
+      else if (event.data == 'On Purchase Page')
+      {
+          // Show iframe
+          document.getElementById('rb').style.display = 'block';
+          console.log('It works');
+      }
+      else
+          console.log(event);
+    });
+  }
 
   return (
     <div className="h-screen">
