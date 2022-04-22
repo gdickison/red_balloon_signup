@@ -29,7 +29,7 @@ const NewEmployerSignup = () => {
         else if (event.data == 'On Purchase Page')
         {
             // Show iframe
-            document.getElementById('rb').style.display = "block !important";
+            document.getElementById('rb').style.visibility = "visible !important";
             console.log('on purchase page')
         }
         else
@@ -44,7 +44,7 @@ const NewEmployerSignup = () => {
         <title>RedBalloon</title>
         <link rel="icon" type="image/png" href="/images/RedBalloon-Icon.png"/>
       </Head>
-      <iframe id="rb" src="https://www.redballoon.work/employer/purchase" title="RedBalloon main site" height="100%" width="100%" onLoad={runLogin} style={{ display: "none !important"}}></iframe>
+      <iframe id="rb" src="https://www.redballoon.work/employer/purchase" title="RedBalloon main site" height="100%" width="100%" onLoad={runLogin} style={{ visibility: "hidden !important"}}></iframe>
     </div>
   )
 }
