@@ -89,7 +89,6 @@ const NewEmployerAccountDetail = () => {
     const response = await fetch(endpoint, options)
 
     if(response.status === 200){
-      console.log(response.status)
       router.push('/new-employer-signup')
     }
   }
@@ -122,9 +121,6 @@ const NewEmployerAccountDetail = () => {
     }
 
     const response = await fetch(endpoint, options)
-    const parsedResponse = await response.json()
-    console.log(parsedResponse)
-
 
     if(response.status === 200){
       saveToJbhq()
@@ -158,7 +154,7 @@ const NewEmployerAccountDetail = () => {
               </div>
               <div className="hero-quote-wrapper absolute top-52 xs:top-64 w-64 flex z-10">
                 <HeroQuote
-                  quote="&quot;We want you to succeed in business&#x21;&quot;"
+                  quote="&quot;Get ready to find amazing talent&#x21;&quot;"
                 />
               </div>
               <div className="hero-who bg-rbRed w-72 absolute top-64 xs:top-80 pt-3 xs:pt-0 xs:-mt-2 text-rbWhite font-light italic">

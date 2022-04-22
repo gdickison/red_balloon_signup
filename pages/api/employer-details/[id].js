@@ -2,8 +2,6 @@
 import { useRouter } from "next/router"
 export default function handler(req, res) {
   const {id} = req.query
-  console.log(req.query)
-  console.log(id)
   fetch(process.env.BACKEND_URL + `employer/${req.query.id}`, {
     method: "PATCH",
     headers: {

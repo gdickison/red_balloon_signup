@@ -56,13 +56,9 @@ export default function Home() {
     }
 
     let response = await fetch(endpoint, options)
-    console.log(response)
     let status = response.status
     let userStatus = await response.json()
 
-    console.log('status', status)
-    console.log('email', userStatus.email_found)
-    console.log('detail', userStatus.detail_found)
 
     if(status === 200 && userStatus.email_found && userStatus.detail_found){
       setShowAlert(true)
@@ -108,7 +104,6 @@ export default function Home() {
       ...newUser
     }
     const JSONdata = JSON.stringify(newUserData)
-    console.log(JSONdata)
     const endpoint = '/api/employer-pledge'
 
     const options = {
@@ -121,7 +116,6 @@ export default function Home() {
     const response = await fetch(endpoint, options)
 
     if(response.status === 200){
-      console.log(router)
       const getNewEmpolyerId = await response.json()
       const newEmployerId = getNewEmpolyerId.id
       router.push(`/new-employer-account-detail/${newEmployerId}`)
