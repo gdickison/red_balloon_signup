@@ -48,8 +48,6 @@ paths:
                         application/json:
                             schema:
                                 $ref: '#/components/schemas/CheckResult'
-                '404':
-                    description: Employer not found
         post:
             tags:
                 - employers
@@ -76,6 +74,10 @@ paths:
                                 $ref: '#/components/schemas/EmployerID'
                 '404':
                     description: Employer not found
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/Error'
 
     /employer/{employer_id}:
         get:
@@ -99,6 +101,10 @@ paths:
                                 $ref: '#/components/schemas/EmployerDetails'
                 '404':
                     description: Employer not found
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/Error'
 
         patch:
             tags:
@@ -128,6 +134,16 @@ paths:
                                 $ref: '#/components/schemas/EmployerID'
                 '404':
                     description: Employer not found, therefore can't update.
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/Error'
+                '409':
+                    description: Duplicate employer name found
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/Error'
 
         delete:
             tags:
@@ -150,6 +166,10 @@ paths:
                                 type: string
                 '404':
                     description: Employer not found, therefore can't delete.
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/Error'
 
     /employer/{employer_id}/save:
         post:
@@ -179,6 +199,10 @@ paths:
                                 type: string
                 '404':
                     description: Employer was not found
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/Error'
 
     /employer/{employer_id}/disable:
         put:
@@ -202,6 +226,10 @@ paths:
                                 type: string
                 '404':
                     description: Employer was not found
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/Error'
 
 components:
     schemas:
@@ -212,10 +240,15 @@ components:
                     type: boolean
                 detail_found:
                     type: boolean
+                employer_id:
+                    type: string
+                    nullable: true
+                    description: Not null if found
 
             required:
                 - email_found
                 - detail_found
+                - employer_id
 
         InitEmployer:
             type: object
@@ -290,3 +323,14 @@ components:
                     description: Unique RB ID of the employer
             required:
                 - id
+
+        Error:
+            type: object
+            properties:
+                statusCode:
+                    type: integer
+                    description: HTTP Status Code
+                error:
+                    type: string
+                message:
+                    type: string

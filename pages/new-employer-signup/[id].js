@@ -1,8 +1,10 @@
 /* eslint-disable @next/next/no-sync-scripts */
 import Head from "next/head"
 import { useState } from "react";
+import { useRouter } from "next/router";
 
 const NewEmployerSignup = () => {
+  const router = useRouter()
 
   const [loggedIn, setLoggedIn] = useState(false)
 
@@ -23,6 +25,18 @@ const NewEmployerSignup = () => {
       if (event.data == 'Purchase Done')
       {
           // Disable account
+          const JSONdata = JSON.stringify(router.query.id)
+          const endpoint = `api/disable-employer/${router.query.id}`
+
+          const options = {
+            method: 'POST',
+            headers: {
+              'ContentType': 'application/json'
+            },
+            body: JSONdata
+          }
+
+          fetch(endpoint, options)
           // Continue to next page
       }
       else if (event.data == 'On Purchase Page' && loggedIn)

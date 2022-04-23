@@ -89,7 +89,7 @@ const NewEmployerAccountDetail = () => {
     const response = await fetch(endpoint, options)
 
     if(response.status === 200){
-      router.push('/new-employer-signup')
+      router.push(`/new-employer-signup/${router.query.id}`)
     }
   }
 
