@@ -129,8 +129,10 @@ const NewEmployerAccountDetail = () => {
     }
 
     const response = await fetch(endpoint, options)
-
-    if(response.status === 200){
+    if(response.status === 409){
+      setShowAlert(true)
+      setAlertMessage("A business with this name already exists. Check to see if your business already has an account, or enter a different business name.")
+    } else if(response.status === 200){
       saveToJbhq()
     }
   }

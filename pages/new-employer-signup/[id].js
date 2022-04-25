@@ -19,7 +19,6 @@ const NewEmployerSignup = () => {
 
   if (loggedIn && typeof window !== undefined) {
     window.addEventListener('message', (event) => {
-      console.log('start addEventListener')
       if (event.origin !== 'https://www.redballoon.work')
           return;
       if (event.data == 'Purchase Done')

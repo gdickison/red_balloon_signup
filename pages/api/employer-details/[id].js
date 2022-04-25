@@ -24,6 +24,11 @@ export default function handler(req, res) {
       awareness: req.body.awareness
     })
   })
-  .then(response => response.json())
-  .then(res.status(200).json({ message: 'Employer Updated'}))
+  .then(response => {
+    if(response.status === 409){
+      res.status(409).json({message: 'Employer already exists'})
+    } else if(response.status === 200){
+      res.status(200).json({message: 'Employer Updated'})
+    }
+  })
 }
