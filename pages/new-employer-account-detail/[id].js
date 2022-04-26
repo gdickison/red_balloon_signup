@@ -88,7 +88,10 @@ const NewEmployerAccountDetail = () => {
 
     const response = await fetch(endpoint, options)
 
-    if(response.status === 200){
+    if(response.status === 404){
+      setShowAlert(true)
+      setAlertMessage("There was a problem entering your information. Please try again.")
+    } else if(response.status === 200){
       router.push(`/new-employer-signup/${router.query.id}`)
     }
   }

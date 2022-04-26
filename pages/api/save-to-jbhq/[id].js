@@ -12,6 +12,11 @@ export default function handler(req, res) {
       terms_accepted: true
     })
   })
-  .then(response => response.json())
-  .then(res.status(200).json({ message: 'Employer Saved'}))
+  .then(response => {
+    if(response.status === 404){
+      res.status(404).json({message: 'Employer was not found'})
+    } else if (response.status === 200){
+      res.status(200).json({message: 'Employer has been enabled and added to JBHQ'})
+    }
+  })
 }

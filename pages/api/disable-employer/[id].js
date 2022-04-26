@@ -9,6 +9,11 @@ export default function handler(req, res) {
       employer_id: req.query.id
     })
   })
-  .then(response => response.json())
-  .then(res.status(200).json({message: "Employer Disabled"}))
+  .then(response => {
+    if(response.status = 404){
+      res.status(404).json({message: 'Employer was not found'})
+    } else if(response.status === 200){
+      res.status(200).json({message: 'Employer has been disabled'})
+    }
+  })
 }
