@@ -99,9 +99,13 @@ export default function Home() {
       return
     }
 
+    const crypto = require('crypto')
+    const hashedPassword = crypto.createHash('sha256', newUser.password).digest('hex')
+
     const newUserData = {
       terms_accepted: checked,
-      ...newUser
+      email: newUser.email,
+      password: hashedPassword
     }
     const JSONdata = JSON.stringify(newUserData)
     const endpoint = '/api/employer-pledge'
