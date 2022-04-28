@@ -21,11 +21,11 @@ const NewEmployerSignup = () => {
     window.addEventListener('message', (event) => {
       if (event.origin !== 'https://www.redballoon.work')
           return;
-      if (event.data == 'Purchase Done')
+      if (event.data == 'Purchase Done' && router.query.id !== undefined)
       {
           // Disable account
           const JSONdata = JSON.stringify(router.query.id)
-          const endpoint = `api/disable-employer/${router.query.id}`
+          const endpoint = `/api/disable-employer/${router.query.id}`
 
           const options = {
             method: 'POST',
@@ -36,7 +36,6 @@ const NewEmployerSignup = () => {
           }
 
           fetch(endpoint, options)
-          // Continue to next page
       }
       else if (event.data == 'On Purchase Page' && loggedIn)
       {
