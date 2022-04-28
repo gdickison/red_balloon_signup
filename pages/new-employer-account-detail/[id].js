@@ -105,7 +105,7 @@ const NewEmployerAccountDetail = () => {
   const eventHandler = async e => {
     e.preventDefault()
 
-    const websiteFormat = /^\w+([\.-]?\w+)*(\.\w{2,10})+$/;
+    const websiteFormat = /^(http(s?):\/\/)?\w+([\.-]?\w+)*(\.\w{2,10})+/;
     if(!newEmployerDetail.website.match(websiteFormat)){
       setShowAlert(true)
       setAlertMessage("A valid web address is required")
