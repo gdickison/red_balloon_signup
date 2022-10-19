@@ -45,7 +45,7 @@ export default function Home() {
     localStorage.setItem("password", newUser.password)
 
     const JSONdata = JSON.stringify(newUser)
-    // const endpoint = '/api/create-account' ===> no access
+    // const endpoint = '/api/create-account' ===> no access on demo site
     const endpoint = '/api/hello'
 
     const options = {
@@ -109,7 +109,7 @@ export default function Home() {
       password: hashedPassword
     }
     const JSONdata = JSON.stringify(newUserData)
-    // const endpoint = '/api/employer-pledge' ===> no access
+    // const endpoint = '/api/employer-pledge' ===> no access on demo site
     const endpoint = '/api/hello'
 
     const options = {

@@ -78,7 +78,7 @@ const NewEmployerAccountDetail = () => {
       password: localStorage.getItem("password")
     })
 
-    // const endpoint = `/api/save-to-jbhq/${router.query.id}` ===> no access
+    // const endpoint = `/api/save-to-jbhq/${router.query.id}` ===> no access on demo site
     const endpoint = `/api/hello`
 
     const options = {
@@ -124,7 +124,7 @@ const NewEmployerAccountDetail = () => {
       }
     }
     const JSONdata = JSON.stringify(newEmployerDetail)
-    // const endpoint = `/api/employer-details/${router.query.id}` ===> no access
+    // const endpoint = `/api/employer-details/${router.query.id}` ===> no access on demo site
     const endpoint = `/api/hello`
 
     const options = {

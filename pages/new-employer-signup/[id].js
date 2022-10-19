@@ -6,7 +6,7 @@ import { useRouter } from "next/router";
 const NewEmployerSignup = () => {
   const router = useRouter()
 
-  // const [loggedIn, setLoggedIn] = useState(false) ===> no access to login
+  // const [loggedIn, setLoggedIn] = useState(false) ===> no access to login on demo site
   const [loggedIn, setLoggedIn] = useState(true)
 
   const runLogin = () => {
@@ -18,35 +18,36 @@ const NewEmployerSignup = () => {
     }
   }
 
-  if (loggedIn && typeof window !== undefined) {
-    window.addEventListener('message', (event) => {
-      if (event.origin !== 'https://www.redballoon.work')
-          return;
-      if (event.data == 'Purchase Done' && router.query.id !== undefined)
-      {
-          // Disable account
-          const JSONdata = JSON.stringify(router.query.id)
-          const endpoint = `/api/disable-employer/${router.query.id}`
+  // DISABLED ON DEMO SITE
+  // if (loggedIn && typeof window !== undefined) {
+  //   window.addEventListener('message', (event) => {
+  //     if (event.origin !== 'https://www.redballoon.work')
+  //         return;
+  //     if (event.data == 'Purchase Done' && router.query.id !== undefined)
+  //     {
+  //         // Disable account
+  //         const JSONdata = JSON.stringify(router.query.id)
+  //         const endpoint = `/api/disable-employer/${router.query.id}`
 
-          const options = {
-            method: 'POST',
-            headers: {
-              'ContentType': 'application/json'
-            },
-            body: JSONdata
-          }
+  //         const options = {
+  //           method: 'POST',
+  //           headers: {
+  //             'ContentType': 'application/json'
+  //           },
+  //           body: JSONdata
+  //         }
 
-          fetch(endpoint, options)
-      }
-      else if (event.data == 'On Purchase Page' && loggedIn)
-      {
-          // Show iframe
-          document.getElementById('rb').removeAttribute('hidden');
-      }
-      else
-          console.log(event);
-    });
-  }
+  //         fetch(endpoint, options)
+  //     }
+  //     else if (event.data == 'On Purchase Page' && loggedIn)
+  //     {
+  //         // Show iframe
+  //         document.getElementById('rb').removeAttribute('hidden');
+  //     }
+  //     else
+  //         console.log(event);
+  //   });
+  // }
 
   return (
     <div className="h-screen">
@@ -62,7 +63,7 @@ const NewEmployerSignup = () => {
           </svg>
         </div>
       }
-      {/* No access to the iframe in dev mode */}
+      {/* No access to the iframe on demo site */}
       {/* <iframe id="rb" src="https://www.redballoon.work/employer/purchase" title="RedBalloon main site" height="100%" width="100%" onLoad={runLogin} hidden></iframe> */}
       <div className="h-screen flex items-center justify-center">
         <h1>iframe to RedBalloon payment page goes here on production site</h1>
