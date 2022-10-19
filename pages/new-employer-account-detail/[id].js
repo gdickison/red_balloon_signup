@@ -191,70 +191,11 @@ const NewEmployerAccountDetail = () => {
             <div className="flex w-full justify-between">
               <select id="region" className={`${!newEmployerDetail.region ? 'text-gray-400' : 'text-black'} h-11 text-lg px-6 w-[48%] rounded-full bg-rbWhite ${showAlert && !newEmployerDetail.region ? 'border-4 border-rbBlue' : showAlert ? 'border-0 opacity-60' : 'border-0'}`} name="region" placeholder="State/Province" defaultValue={null} onChange={changeHandler} onKeyDown={enterKeyHandler}>
                 <option value={null} hidden>State/Province</option>
-                <option className="text-black" value="AL" data-country-code="US">Alabama</option>
-                <option className="text-black" value="AK" data-country-code="US">Alaska</option>
-                <option className="text-black" value="AZ" data-country-code="US">Arizona</option>
-                <option className="text-black" value="AR" data-country-code="US">Arkansas</option>
-                <option className="text-black" value="CA" data-country-code="US">California</option>
-                <option className="text-black" value="CO" data-country-code="US">Colorado</option>
-                <option className="text-black" value="CT" data-country-code="US">Connecticut</option>
-                <option className="text-black" value="DE" data-country-code="US">Delaware</option>
-                <option className="text-black" value="DC" data-country-code="US">District Of Columbia</option>
-                <option className="text-black" value="FL" data-country-code="US">Florida</option>
-                <option className="text-black" value="GA" data-country-code="US">Georgia</option>
-                <option className="text-black" value="HI" data-country-code="US">Hawaii</option>
-                <option className="text-black" value="ID" data-country-code="US">Idaho</option>
-                <option className="text-black" value="IL" data-country-code="US">Illinois</option>
-                <option className="text-black" value="IN" data-country-code="US">Indiana</option>
-                <option className="text-black" value="IA" data-country-code="US">Iowa</option>
-                <option className="text-black" value="KS" data-country-code="US">Kansas</option>
-                <option className="text-black" value="KY" data-country-code="US">Kentucky</option>
-                <option className="text-black" value="LA" data-country-code="US">Louisiana</option>
-                <option className="text-black" value="ME" data-country-code="US">Maine</option>
-                <option className="text-black" value="MD" data-country-code="US">Maryland</option>
-                <option className="text-black" value="MA" data-country-code="US">Massachusetts</option>
-                <option className="text-black" value="MI" data-country-code="US">Michigan</option>
-                <option className="text-black" value="MN" data-country-code="US">Minnesota</option>
-                <option className="text-black" value="MS" data-country-code="US">Mississippi</option>
-                <option className="text-black" value="MO" data-country-code="US">Missouri</option>
-                <option className="text-black" value="MT" data-country-code="US">Montana</option>
-                <option className="text-black" value="NE" data-country-code="US">Nebraska</option>
-                <option className="text-black" value="NV" data-country-code="US">Nevada</option>
-                <option className="text-black" value="NH" data-country-code="US">New Hampshire</option>
-                <option className="text-black" value="NJ" data-country-code="US">New Jersey</option>
-                <option className="text-black" value="NM" data-country-code="US">New Mexico</option>
-                <option className="text-black" value="NY" data-country-code="US">New York</option>
-                <option className="text-black" value="NC" data-country-code="US">North Carolina</option>
-                <option className="text-black" value="ND" data-country-code="US">North Dakota</option>
-                <option className="text-black" value="OH" data-country-code="US">Ohio</option>
-                <option className="text-black" value="OK" data-country-code="US">Oklahoma</option>
-                <option className="text-black" value="OR" data-country-code="US">Oregon</option>
-                <option className="text-black" value="PA" data-country-code="US">Pennsylvania</option>
-                <option className="text-black" value="RI" data-country-code="US">Rhode Island</option>
-                <option className="text-black" value="SC" data-country-code="US">South Carolina</option>
-                <option className="text-black" value="SD" data-country-code="US">South Dakota</option>
-                <option className="text-black" value="TN" data-country-code="US">Tennessee</option>
-                <option className="text-black" value="TX" data-country-code="US">Texas</option>
-                <option className="text-black" value="UT" data-country-code="US">Utah</option>
-                <option className="text-black" value="VT" data-country-code="US">Vermont</option>
-                <option className="text-black" value="VA" data-country-code="US">Virginia</option>
-                <option className="text-black" value="WA" data-country-code="US">Washington</option>
-                <option className="text-black" value="WV" data-country-code="US">West Virginia</option>
-                <option className="text-black" value="WI" data-country-code="US">Wisconsin</option>
-                <option className="text-black" value="WY" data-country-code="US">Wyoming</option>
-                <option className="text-black" value="AB" data-country-code="CA">Alberta</option>
-                <option className="text-black" value="BC" data-country-code="CA">British Columbia</option>
-                <option className="text-black" value="MB" data-country-code="CA">Manitoba</option>
-                <option className="text-black" value="NB" data-country-code="CA">New Brunswick</option>
-                <option className="text-black" value="NL" data-country-code="CA">Newfoundland and Labrador</option>
-                <option className="text-black" value="NS" data-country-code="CA">Nova Scotia</option>
-                <option className="text-black" value="ON" data-country-code="CA">Ontario</option>
-                <option className="text-black" value="PE" data-country-code="CA">Prince Edward Island</option>
-                <option className="text-black" value="QC" data-country-code="CA">Quebec</option>
-                <option className="text-black" value="SK" data-country-code="CA">Saskatchewan</option>
-                <option className="text-black" value="NT" data-country-code="CA">Northwest Territories</option>
-                <option className="text-black" value="NU" data-country-code="CA">Nunavut</option>
-                <option className="text-black" value="YT" data-country-code="CA">Yukon</option>
+                {regions.map(region => {
+                  return (
+                    <option key={region.value} className="text-black" value={region.value} data-country-code={region.country}>{region.display}</option>
+                  )
+                })}
               </select>
               <input id="postal-code" className={`h-11 text-lg px-6 w-[48%] rounded-full ${showAlert && !newEmployerDetail.postalCode ? 'border-4 border-rbBlue' : showAlert ? 'border-0 opacity-60' : 'border-0'}`} type="text" name="postalCode" placeholder="Zip/Postal Code" onChange={changeHandler} onKeyDown={enterKeyHandler}/>
             </div>
