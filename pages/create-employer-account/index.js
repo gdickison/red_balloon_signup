@@ -45,7 +45,8 @@ export default function Home() {
     localStorage.setItem("password", newUser.password)
 
     const JSONdata = JSON.stringify(newUser)
-    const endpoint = '/api/create-account'
+    // const endpoint = '/api/create-account' ===> no access
+    const endpoint = '/api/hello'
 
     const options = {
       method: 'POST',
@@ -108,7 +109,8 @@ export default function Home() {
       password: hashedPassword
     }
     const JSONdata = JSON.stringify(newUserData)
-    const endpoint = '/api/employer-pledge'
+    // const endpoint = '/api/employer-pledge' ===> no access
+    const endpoint = '/api/hello'
 
     const options = {
       method: 'POST',
@@ -120,8 +122,9 @@ export default function Home() {
     const response = await fetch(endpoint, options)
 
     if(response.status === 200){
-      const getNewEmpolyerId = await response.json()
-      const newEmployerId = getNewEmpolyerId.id
+      // const getNewEmpolyerId = await response.json()
+      // const newEmployerId = getNewEmpolyerId.id
+      const newEmployerId = "123456789"
       router.push(`/new-employer-account-detail/${newEmployerId}`)
     }
   }

@@ -6,7 +6,8 @@ import { useRouter } from "next/router";
 const NewEmployerSignup = () => {
   const router = useRouter()
 
-  const [loggedIn, setLoggedIn] = useState(false)
+  // const [loggedIn, setLoggedIn] = useState(false) ===> no access to login
+  const [loggedIn, setLoggedIn] = useState(true)
 
   const runLogin = () => {
     if(localStorage.getItem("email") && localStorage.getItem("password")){
@@ -61,7 +62,11 @@ const NewEmployerSignup = () => {
           </svg>
         </div>
       }
-      <iframe id="rb" src="https://www.redballoon.work/employer/purchase" title="RedBalloon main site" height="100%" width="100%" onLoad={runLogin} hidden></iframe>
+      {/* No access to the iframe in dev mode */}
+      {/* <iframe id="rb" src="https://www.redballoon.work/employer/purchase" title="RedBalloon main site" height="100%" width="100%" onLoad={runLogin} hidden></iframe> */}
+      <div className="h-screen flex items-center justify-center">
+        <h1>iframe to RedBalloon payment page goes here on production site</h1>
+      </div>
     </div>
   )
 }

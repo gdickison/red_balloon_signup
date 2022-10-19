@@ -12,7 +12,6 @@ export default function Home() {
         <Link href="/create-employer-account">
           <a>Create Employer Account</a>
         </Link>
-        <p>Create Job Seeker Account</p>
       </div>
 
     </>

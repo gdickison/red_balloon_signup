@@ -9,6 +9,8 @@ import Alert from "../../src/assets/Alert"
 import { useState } from 'react'
 import { useRouter } from "next/router"
 
+import regions from '../../src/data/regions'
+
 const NewEmployerAccountDetail = () => {
   const router = useRouter()
 
@@ -76,7 +78,8 @@ const NewEmployerAccountDetail = () => {
       password: localStorage.getItem("password")
     })
 
-    const endpoint = `/api/save-to-jbhq/${router.query.id}`
+    // const endpoint = `/api/save-to-jbhq/${router.query.id}` ===> no access
+    const endpoint = `/api/hello`
 
     const options = {
       method: 'POST',
@@ -121,7 +124,8 @@ const NewEmployerAccountDetail = () => {
       }
     }
     const JSONdata = JSON.stringify(newEmployerDetail)
-    const endpoint = `/api/employer-details/${router.query.id}`
+    // const endpoint = `/api/employer-details/${router.query.id}` ===> no access
+    const endpoint = `/api/hello`
 
     const options = {
       method: 'POST',
